@@ -25,7 +25,7 @@
                 android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
-            android:name="com.furkantektas.braingames.ui.GameColorMatchActivity"
+            android:name="com.furkantektas.braingames.ui.games.GameColorMatchActivity"
             android:label="@string/game_color_match"
             android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
             <meta-data

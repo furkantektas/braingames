@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    android:layout_gravity="center">
+    <com.furkantektas.braingames.ui.SquareCardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/color_match_card"
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="20dp"
+        card_view:cardCornerRadius="0dp"
+        android:foregroundGravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:baselineAligned="false"
+            android:weightSum="5">
+        <TextView
+            android:id="@+id/color_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@color/orange"
+            android:textColor="@color/white"
+            android:text="@string/orange"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAllCaps="true"
+            android:textSize="48sp"
+            android:gravity="center"
+            android:singleLine="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:baselineAligned="false">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/different"
+                android:id="@+id/button_no"
+                android:padding="10dp"
+                android:layout_weight="1"
+                style="@style/Base.TextAppearance.AppCompat.Button" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                android:text="@string/same"
+                android:id="@+id/button_yes"
+                android:layout_weight="1"
+                style="@style/Base.TextAppearance.AppCompat.Button" />
+        </LinearLayout>
+        </LinearLayout>
+    </com.furkantektas.braingames.ui.SquareCardView>
+</LinearLayout>
