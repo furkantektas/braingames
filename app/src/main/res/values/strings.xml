@@ -7,4 +7,6 @@
     <string name="action_about">About</string>
     <string name="title_activity_about">About</string>
     <string name="about_text">Application icon "Brain" designed by <a href="http://www.thenounproject.com/christophablake">Christopher Reyes</a> from the <a href="http://www.thenounproject.com">Noun Project</a></string>
+    <string name="title_activity_tut_color_match">Color Match Tutorial</string>
+
 </resources>

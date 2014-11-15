@@ -1,4 +1,4 @@
-package com.furkantektas.braingames;
+package com.furkantektas.braingames.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,8 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.furkantektas.braingames.R;
 
-public class About extends Activity {
+
+public class AboutActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

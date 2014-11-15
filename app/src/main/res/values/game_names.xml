@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_color_match">Color Match</string>
+    <string name="game_image_match">Image Match</string>
+</resources>

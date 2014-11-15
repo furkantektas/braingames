@@ -1,10 +1,15 @@
-package com.furkantektas.braingames;
+package com.furkantektas.braingames.ui;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.furkantektas.braingames.R;
+import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
 
 
 public class MainActivity extends Activity {
@@ -13,6 +18,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button b = (Button) findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),GameColorMatchActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 
@@ -27,7 +40,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_about:
-                Intent i = new Intent(getApplicationContext(),About.class);
+                Intent i = new Intent(getApplicationContext(),AboutActivity.class);
                 startActivity(i);
                 return true;
         }
