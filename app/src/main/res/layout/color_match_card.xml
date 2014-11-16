@@ -6,7 +6,7 @@
     android:padding="0dp"
     android:layout_margin="0dp"
     android:layout_gravity="center">
-    <com.furkantektas.braingames.ui.SquareCardView
+    <com.furkantektas.braingames.ui.AspectRatioCardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/color_match_card"
         android:layout_gravity="center"
@@ -14,7 +14,8 @@
         android:layout_height="fill_parent"
         android:layout_margin="20dp"
         card_view:cardCornerRadius="0dp"
-        android:foregroundGravity="center">
+        android:foregroundGravity="center"
+        card_view:ratio="0.75">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,7 +51,7 @@
                 android:id="@+id/button_no"
                 android:padding="10dp"
                 android:layout_weight="1"
-                style="@style/Base.TextAppearance.AppCompat.Button" />
+                style="@style/Widget.AppCompat.ActionButton" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -59,8 +60,8 @@
                 android:text="@string/same"
                 android:id="@+id/button_yes"
                 android:layout_weight="1"
-                style="@style/Base.TextAppearance.AppCompat.Button" />
+                style="@style/Widget.AppCompat.ActionButton" />
         </LinearLayout>
         </LinearLayout>
-    </com.furkantektas.braingames.ui.SquareCardView>
+    </com.furkantektas.braingames.ui.AspectRatioCardView>
 </LinearLayout>
