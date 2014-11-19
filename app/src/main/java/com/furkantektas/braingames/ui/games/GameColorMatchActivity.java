@@ -1,16 +1,13 @@
 package com.furkantektas.braingames.ui.games;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterViewFlipper;
+import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.ColorMatchAdapter;
 import com.furkantektas.braingames.datatypes.GameType;
-import com.furkantektas.braingames.ui.games.tuts.TutColorMatchActivity;
 
 public class GameColorMatchActivity extends AbstractTimerGameActivity {
     private String mGameName;
@@ -19,60 +16,55 @@ public class GameColorMatchActivity extends AbstractTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;
     private ColorMatchAdapter mAdapter;
 
+    private static final int QUESTION_NUM = 25;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // show tutorial if user plays this game for the first time
-        if(getShowTutorial()) {
-            Intent i = new Intent(getApplicationContext(),TutColorMatchActivity.class);
-            startActivity(i);
-        }
+//        if(getShowTutorial()) {
+//            Intent i = new Intent(getApplicationContext(),TutColorMatchActivity.class);
+//            startActivity(i);
+//        }
         setContentView(R.layout.activity_game_color_match);
 
 
         mAdapterFlipper = (AdapterViewFlipper)findViewById(R.id.flipper);
-        mAdapter = new ColorMatchAdapter(100, new View.OnClickListener() {
+
+        mAdapter = new ColorMatchAdapter(QUESTION_NUM, this, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAdapterFlipper.showNext();
+                positiveSound();
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAdapterFlipper.showPrevious();
+                mAdapterFlipper.showNext();
+                negativeSound();
             }
         });
 
         mAdapterFlipper.setAdapter(mAdapter);
+        mAdapterFlipper.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void startGame() {
+        startTimer();
+        mAdapterFlipper.setVisibility(View.VISIBLE);
+    }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game_color_match, menu);
+    public void finishGame() {
+        stopTimer();
+        Toast.makeText(getApplicationContext(),"Correct Results: "+mAdapter.getCorrectResults()+ "Time:"+getElapsedTime()/1000+"sec",Toast.LENGTH_LONG).show();
+        super.finishGame();
+    }
 
+    @Override
+    public boolean hasReadyScreen() {
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-            if(isTimerRunning())
-                stopTimer();
-            else
-                startTimer();
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -95,5 +87,10 @@ public class GameColorMatchActivity extends AbstractTimerGameActivity {
     @Override
     public void setGameType(GameType type) {
         mGameType = type;
+    }
+
+    @Override
+    public int getScore() {
+        return mAdapter.getCorrectResults();
     }
 }

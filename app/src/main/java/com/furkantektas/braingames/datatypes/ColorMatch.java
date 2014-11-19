@@ -23,6 +23,10 @@ public class ColorMatch {
         GREEN(R.color.green),
         ORANGE(R.color.orange),
         BLUE(R.color.blue),
+        YELLOW(R.color.yellow),
+        BROWN(R.color.brown),
+        PINK(R.color.pink),
+        PURPLE(R.color.purple),
         BLACK(R.color.black);
 
         private int resId;
@@ -41,6 +45,10 @@ public class ColorMatch {
         GREEN(R.string.green),
         ORANGE(R.string.orange),
         BLUE(R.string.blue),
+        YELLOW(R.string.yellow),
+        BROWN(R.string.brown),
+        PINK(R.string.pink),
+        PURPLE(R.string.purple),
         BLACK(R.string.black);
 
         private int resId;
@@ -52,5 +60,25 @@ public class ColorMatch {
         public int getResId() {
             return resId;
         }
+    }
+
+    public static Color generateColor(int ind) {
+        int i = 0;
+        Color[] colors = Color.values();
+
+        if(ind > colors.length)
+            ind = (ind + colors.length) % colors.length;
+
+        return colors[ind];
+    }
+
+    public static ColorNames generateColorName(int ind) {
+        int i = 0;
+        ColorNames[] colorNames = ColorNames.values();
+
+        if(ind > colorNames.length)
+            ind = (ind + colorNames.length) % colorNames.length;
+
+        return colorNames[ind];
     }
 }

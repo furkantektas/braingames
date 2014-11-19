@@ -18,7 +18,7 @@ public abstract class AbstractTimerGameActivity extends AbstractGameActivity {
     private boolean mIsTimerRunning = false;
     private boolean mIsTimerInitialized = false;
     private long mTimeWhenStopped = 0l;
-
+    private int mMaxTime = 1000 * 60 * 3; // 5 min
 
     protected void resetTimer() {
         if(mChronometer == null)

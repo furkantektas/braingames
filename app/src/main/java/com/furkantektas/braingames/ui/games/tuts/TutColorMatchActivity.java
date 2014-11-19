@@ -21,10 +21,11 @@ public class TutColorMatchActivity extends Activity {
         setContentView(R.layout.activity_tut_color_match);
 
         mAdapterFlipper = (AdapterViewFlipper)findViewById(R.id.flipper);
-        mAdapter = new ColorMatchAdapter(100, new View.OnClickListener() {
+        mAdapter = new ColorMatchAdapter(10, null, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAdapterFlipper.showNext();
+
             }
         }, new View.OnClickListener() {
             @Override

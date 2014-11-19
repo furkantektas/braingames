@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BrainGames</string>
+    <string name="action_about">Hakkında</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="black">Siyah</string>
+    <string name="blue">Mavi</string>
+    <string name="brown">Kahverengi</string>
+    <string name="different">Farklı</string>
+    <string name="game_color_match">Renk Eşleştirme</string>
+    <string name="green">Yeşil</string>
+    <string name="orange">Turuncu</string>
+    <string name="pink">Pembe</string>
+    <string name="purple">Mor</string>
+    <string name="red">Kırmızı</string>
+    <string name="replay_button">Tekrar</string>
+    <string name="same">Aynı</string>
+    <string name="start_game">Başla</string>
+    <string name="title_activity_about">Hakkında</string>
+    <string name="white">Beyaz</string>
+    <string name="yellow">Sarı</string>
+    <string name="game_image_match">Resim Eşleştirme</string>
+    <string name="main_menu_button">Ana Menü</string>
+</resources>

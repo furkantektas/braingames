@@ -4,6 +4,10 @@
     <color name="green">#0a8f08</color>
     <color name="orange">#fb8c00</color>
     <color name="blue">#4e6cef</color>
+    <color name="yellow">#FDD835</color>
+    <color name="brown">#6D4C41</color>
+    <color name="pink">#D81B60</color>
+    <color name="purple">#8E24AA</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
 </resources>

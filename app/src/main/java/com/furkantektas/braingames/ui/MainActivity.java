@@ -9,15 +9,20 @@ import android.view.View;
 import android.widget.Button;
 
 import com.furkantektas.braingames.R;
+import com.furkantektas.braingames.data.SFX;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
 
 
 public class MainActivity extends Activity {
+    private static SFX mSFX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setSFX(new SFX(getApplicationContext()));
+
         Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +50,14 @@ public class MainActivity extends Activity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public static SFX getSFX() {
+        return mSFX;
+    }
+
+    public static void setSFX(SFX mSFX) {
+        MainActivity.mSFX = mSFX;
     }
 }

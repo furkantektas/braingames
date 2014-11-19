@@ -9,17 +9,20 @@ import android.widget.TextView;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.datatypes.ColorMatch;
+import com.furkantektas.braingames.ui.games.Game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Furkan Tektas on 11/15/14.
  */
 public class ColorMatchAdapter extends BaseAdapter {
-    private List<ColorMatch> dataSet;
-    private View.OnClickListener parentSameOnClickListener;
-    private View.OnClickListener parentDiffOnClickListener;
+    private List<ColorMatch> mDataSet;
+    private Game mGame;
+    private View.OnClickListener parentRightOnClickListener;
+    private View.OnClickListener parentWrongOnClickListener;
     private View.OnClickListener rightFullSameOnClickListener;
     private View.OnClickListener wrongFullSameOnClickListener;
     private View.OnClickListener rightFullDiffOnClickListener;
@@ -30,35 +33,32 @@ public class ColorMatchAdapter extends BaseAdapter {
      * Initializes colorMatch Questions adapter with size elements.
      * @param size
      */
-    public ColorMatchAdapter(int size, final View.OnClickListener sameListener, View.OnClickListener diffListener) {
-        parentSameOnClickListener = sameListener;
-        parentDiffOnClickListener = diffListener;
-        dataSet = new ArrayList<ColorMatch>((int)(size*1.5));
-        for(int i = 0; i < size; ++i) {
-            ColorMatch c;
-            if(i%3 == 0)
-                c = new ColorMatch(ColorMatch.ColorNames.BLACK, ColorMatch.Color.BLUE);
-            else if (i%3 == 1)
-                c = new ColorMatch(ColorMatch.ColorNames.ORANGE, ColorMatch.Color.RED);
-            else
-                c = new ColorMatch(ColorMatch.ColorNames.GREEN, ColorMatch.Color.GREEN);
+    public ColorMatchAdapter(int size, Game game, final View.OnClickListener rightListener, View.OnClickListener wrongListener) {
+        this.mGame = game;
+        parentRightOnClickListener = rightListener;
+        parentWrongOnClickListener = wrongListener;
+        mDataSet = new ArrayList<ColorMatch>((int)(size*1.5));
+        generateDataset(size);
+        initListeners();
+    }
 
-            dataSet.add(c);
-        }
-
+    /**
+     * Generate button's OnClickListeners
+     */
+    private void initListeners() {
         // for performance reasons, predefining onclicklisteners
         rightFullSameOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ++correctResults;
-                parentSameOnClickListener.onClick(view);
+                parentRightOnClickListener.onClick(view);
             }
         };
 
         wrongFullSameOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                parentSameOnClickListener.onClick(view);
+                parentWrongOnClickListener.onClick(view);
             }
         };
 
@@ -66,21 +66,42 @@ public class ColorMatchAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 ++correctResults;
-                parentDiffOnClickListener.onClick(view);
+                parentRightOnClickListener.onClick(view);
             }
         };
 
         wrongFullDiffOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                parentDiffOnClickListener.onClick(view);
+                parentWrongOnClickListener.onClick(view);
             }
         };
     }
 
+    /**
+     * Extends current dataset by size.
+     * @param size
+     */
+    private void generateDataset(int size) {
+        Random r = new Random();
+
+        for(int i = 0; i < size; ++i) {
+            ColorMatch c;
+            int rand1 = r.nextInt(ColorMatch.Color.values().length);
+            int rand2 = r.nextInt(ColorMatch.Color.values().length);
+            boolean isTrue = rand1 % 2 == 1;
+
+            if(isTrue)
+                c = new ColorMatch(ColorMatch.generateColorName(rand1), ColorMatch.generateColor(rand1));
+            else
+                c = new ColorMatch(ColorMatch.generateColorName(rand1), ColorMatch.generateColor(rand2));
+            mDataSet.add(c);
+        }
+    }
+
     @Override
     public int getCount() {
-        return dataSet.size();
+        return mDataSet.size();
     }
 
     @Override
@@ -105,13 +126,53 @@ public class ColorMatchAdapter extends BaseAdapter {
         } else {
             vh = (ColorMatchViewHolder) view.getTag();
         }
+        System.out.println("i="+i);
 
-        final ColorMatch c = dataSet.get(i);
+        final ColorMatch c = mDataSet.get(i);
         vh.mColorName.setText(c.colorName.getResId());
         vh.mColorName.setBackgroundResource(c.color.getResId());
-        vh.mSameButton.setOnClickListener((c.isTrue() ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
-        vh.mDifferentButton.setOnClickListener((!c.isTrue() ? rightFullDiffOnClickListener: wrongFullDiffOnClickListener));
+
+        if((i+1) == getCount()) {
+            vh.mSameButton.setOnClickListener((c.isTrue() ? new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rightFullSameOnClickListener.onClick(view);
+                    getGame().finishGame();
+                }
+            } : new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    wrongFullSameOnClickListener.onClick(view);
+                    getGame().finishGame();
+                }
+            }));
+            vh.mDifferentButton.setOnClickListener((!c.isTrue() ? new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rightFullDiffOnClickListener.onClick(view);
+                    getGame().finishGame();
+                }
+            }: new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    wrongFullDiffOnClickListener.onClick(view);
+                    getGame().finishGame();
+                }
+            }));
+        } else {
+            vh.mSameButton.setOnClickListener((c.isTrue() ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
+            vh.mDifferentButton.setOnClickListener((!c.isTrue() ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
+        }
+
         return view;
+    }
+
+    public Game getGame() {
+        return mGame;
+    }
+
+    public void setGame(Game mGame) {
+        this.mGame = mGame;
     }
 
     public static class ColorMatchViewHolder {

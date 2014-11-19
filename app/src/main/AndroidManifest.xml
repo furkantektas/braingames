@@ -9,9 +9,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.furkantektas.braingames.ui.MainActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,33 +20,41 @@
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.AboutActivity"
-            android:label="@string/title_activity_about"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
+            android:label="@string/title_activity_about"
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameColorMatchActivity"
-            android:label="@string/game_color_match"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
+            android:label="@string/game_color_match"
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.tuts.TutColorMatchActivity"
-            android:label="@string/title_activity_tut_color_match"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.furkantektas.braingames.ui.games.GameColorMatchActivity" >
+            android:label="@string/title_activity_tut_color_match"
+            android:parentActivityName="com.furkantektas.braingames.ui.games.GameColorMatchActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.ui.games.GameColorMatchActivity" />
+        </activity>
+        <activity
+            android:name="com.furkantektas.braingames.ui.games.GameResultActivity"
+            android:label="@string/title_activity_game_result"
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.furkantektas.braingames.ui.MainActivity" />
         </activity>
     </application>
 
