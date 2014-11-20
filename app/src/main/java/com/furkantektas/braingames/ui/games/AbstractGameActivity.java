@@ -8,8 +8,13 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
+import com.furkantektas.braingames.datatypes.Game;
+import com.furkantektas.braingames.datatypes.GameStat;
+import com.furkantektas.braingames.datatypes.GameType;
 import com.furkantektas.braingames.ui.MainActivity;
 import com.furkantektas.braingames.ui.ReadyScreenFragment;
+
+import java.util.Date;
 
 /**
  * AbstractGameActivity is the predecessor class of all game activity
@@ -20,6 +25,11 @@ import com.furkantektas.braingames.ui.ReadyScreenFragment;
 public abstract class AbstractGameActivity extends ActionBarActivity implements Game {
     private boolean mShowTutorial;
     private static final String SHARED_PREF_NAME = "GAME_PREFERENCES";
+    private GameStat mGameStat = new GameStat();
+    private SharedPreferences mPreferences;
+    private Fragment mReadyScreenFragment;
+    private static SFX mSFX;
+
     public static final int GAME_RESULT_CODE = 0;
     public static final String ARG_ACTION = "FinalAction";
 
@@ -33,19 +43,12 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
             this.ind = ind;
         }
     };
-    private SharedPreferences mPreferences;
-    private Fragment mReadyScreenFragment;
-
-
-    private static SFX mSFX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSFX = MainActivity.getSFX();
         setPreferences(getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, android.content.Context.MODE_PRIVATE));
-        // setting showTutorial value
-        mShowTutorial = getPreferences().getBoolean(getGameType().toString(), true);
     }
 
     @Override
@@ -65,7 +68,7 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
 
     @Override
     public boolean getShowTutorial() {
-        return mShowTutorial;
+        return getPreferences().getBoolean(getGameType().toString(), true);
     }
 
     public SharedPreferences getPreferences() {
@@ -130,5 +133,45 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
                 }
             }
         }
+    }
+
+    @Override
+    public Date getTime() {
+        return mGameStat.getTime();
+    }
+
+    @Override
+    public void setTime(Date date) {
+        mGameStat.setTime(date);
+    }
+
+    @Override
+    public int getScore() {
+        return mGameStat.getScore();
+    }
+
+    @Override
+    public void setScore(int score) {
+        mGameStat.setScore(score);
+    }
+
+    @Override
+    public String getGameName() {
+        return mGameStat.getGameName();
+    }
+
+    @Override
+    public void setGameName(String name) {
+        mGameStat.setGameName(name);
+    }
+
+    @Override
+    public GameType getGameType() {
+        return mGameStat.getGameType();
+    }
+
+    @Override
+    public void setGameType(GameType type) {
+        mGameStat.setGameType(type);
     }
 }

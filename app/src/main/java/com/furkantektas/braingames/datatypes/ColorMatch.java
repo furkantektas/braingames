@@ -66,7 +66,7 @@ public class ColorMatch {
         int i = 0;
         Color[] colors = Color.values();
 
-        if(ind > colors.length)
+        if(ind >= colors.length)
             ind = (ind + colors.length) % colors.length;
 
         return colors[ind];
@@ -76,7 +76,7 @@ public class ColorMatch {
         int i = 0;
         ColorNames[] colorNames = ColorNames.values();
 
-        if(ind > colorNames.length)
+        if(ind >= colorNames.length)
             ind = (ind + colorNames.length) % colorNames.length;
 
         return colorNames[ind];

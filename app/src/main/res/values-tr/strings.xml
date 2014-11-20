@@ -19,6 +19,6 @@
     <string name="title_activity_about">Hakkında</string>
     <string name="white">Beyaz</string>
     <string name="yellow">Sarı</string>
-    <string name="game_image_match">Resim Eşleştirme</string>
+    <string name="game_shape_match">Şekil Eşleştirme</string>
     <string name="main_menu_button">Ana Menü</string>
 </resources>

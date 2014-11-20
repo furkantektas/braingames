@@ -5,21 +5,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.furkantektas.braingames.R;
-import com.furkantektas.braingames.datatypes.ColorMatch;
 import com.furkantektas.braingames.datatypes.Game;
+import com.furkantektas.braingames.datatypes.ShapeMatch;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Furkan Tektas on 11/15/14.
+ * Created by Furkan Tektas on 11/20/14.
  */
-public class ColorMatchAdapter extends BaseAdapter {
-    private List<ColorMatch> mDataSet;
+public class ShapeMatchAdapter extends BaseAdapter {
+    private List<ShapeMatch> mDataSet;
     private Game mGame;
     private View.OnClickListener parentRightOnClickListener;
     private View.OnClickListener parentWrongOnClickListener;
@@ -33,11 +34,11 @@ public class ColorMatchAdapter extends BaseAdapter {
      * Initializes colorMatch Questions adapter with size elements.
      * @param size
      */
-    public ColorMatchAdapter(int size, Game game, final View.OnClickListener rightListener, View.OnClickListener wrongListener) {
+    public ShapeMatchAdapter(int size, Game game, final View.OnClickListener rightListener, View.OnClickListener wrongListener) {
         this.mGame = game;
         parentRightOnClickListener = rightListener;
         parentWrongOnClickListener = wrongListener;
-        mDataSet = new ArrayList<ColorMatch>((int)(size*1.5));
+        mDataSet = new ArrayList<ShapeMatch>((int)(size*1.5));
         generateDataset(size);
         initListeners();
     }
@@ -85,20 +86,21 @@ public class ColorMatchAdapter extends BaseAdapter {
     private void generateDataset(int size) {
         Random r = new Random();
 
-        for(int i = 0; i < size; ++i) {
-            ColorMatch c;
-            int rand1 = r.nextInt(ColorMatch.Color.values().length);
-            int rand2 = r.nextInt(ColorMatch.Color.values().length);
-            boolean isTrue = rand1 % 2 == 1;
+        for(int i = 0; i < (size + 1); ++i) {
+            int rand1 = r.nextInt(ShapeMatch.Shape.values().length);
+            boolean isSame = (i > 0) && ((rand1 % 2) == 0);
 
-            if(rand1 == rand2)
-                rand2 = (rand2 + size + 3)  % size;
-
-            if(isTrue)
-                c = new ColorMatch(ColorMatch.generateColorName(rand1), ColorMatch.generateColor(rand1));
+            ShapeMatch newShape;
+            if(!isSame && i > 0) {
+                ShapeMatch prevShape = mDataSet.get(i-1);
+                newShape = new ShapeMatch(ShapeMatch.generateShape(rand1));
+                while(newShape.equals(prevShape))
+                    newShape = new ShapeMatch(ShapeMatch.generateShape(rand1+1));
+            } else if(isSame)
+                newShape = new ShapeMatch(mDataSet.get(i - 1).shape);
             else
-                c = new ColorMatch(ColorMatch.generateColorName(rand1), ColorMatch.generateColor(rand2));
-            mDataSet.add(c);
+                newShape = new ShapeMatch(ShapeMatch.generateShape(rand1));
+            mDataSet.add(newShape);
         }
     }
 
@@ -119,24 +121,31 @@ public class ColorMatchAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ColorMatchViewHolder vh;
+        ShapeMatchViewHolder vh;
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.color_match_card, viewGroup, false);
+                    .inflate(R.layout.shape_match_card, viewGroup, false);
 
-            vh = new ColorMatchViewHolder(view);
+            vh = new ShapeMatchViewHolder(view);
             view.setTag(vh);
         } else {
-            vh = (ColorMatchViewHolder) view.getTag();
+            vh = (ShapeMatchViewHolder) view.getTag();
         }
         System.out.println("i="+i);
 
-        final ColorMatch c = mDataSet.get(i);
-        vh.mColorName.setText(c.colorName.getResId());
-        vh.mColorName.setBackgroundResource(c.color.getResId());
+        ShapeMatch sPrev = null;
+        if(i > 0) {
+            sPrev = mDataSet.get(i - 1);
+            vh.mButtonContainer.setVisibility(View.VISIBLE);
+        } else {
+            vh.mButtonContainer.setVisibility(View.GONE);
+        }
+
+        final ShapeMatch sCurr = mDataSet.get(i);
+        vh.mShape.setImageResource(sCurr.shape.getResId());
 
         if((i+1) == getCount()) {
-            vh.mSameButton.setOnClickListener((c.isTrue() ? new View.OnClickListener() {
+            vh.mSameButton.setOnClickListener((sCurr.equals(sPrev) ? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     rightFullSameOnClickListener.onClick(view);
@@ -149,7 +158,7 @@ public class ColorMatchAdapter extends BaseAdapter {
                     getGame().finishGame();
                 }
             }));
-            vh.mDifferentButton.setOnClickListener((!c.isTrue() ? new View.OnClickListener() {
+            vh.mDifferentButton.setOnClickListener((!sCurr.equals(sPrev) ? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     rightFullDiffOnClickListener.onClick(view);
@@ -162,9 +171,9 @@ public class ColorMatchAdapter extends BaseAdapter {
                     getGame().finishGame();
                 }
             }));
-        } else {
-            vh.mSameButton.setOnClickListener((c.isTrue() ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
-            vh.mDifferentButton.setOnClickListener((!c.isTrue() ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
+        } else if(i > 0) {
+            vh.mSameButton.setOnClickListener((sCurr.equals(sPrev) ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
+            vh.mDifferentButton.setOnClickListener((!sCurr.equals(sPrev) ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
         }
 
         return view;
@@ -178,15 +187,17 @@ public class ColorMatchAdapter extends BaseAdapter {
         this.mGame = mGame;
     }
 
-    public static class ColorMatchViewHolder {
-        public TextView mColorName;
+    public static class ShapeMatchViewHolder {
+        public ImageView mShape;
         public Button mSameButton;
         public Button mDifferentButton;
+        public View mButtonContainer;
 
-        public ColorMatchViewHolder(View v) {
-            mColorName = (TextView) v.findViewById(R.id.color_name);
+        public ShapeMatchViewHolder(View v) {
+            mShape = (ImageView) v.findViewById(R.id.shape);
             mSameButton = (Button) v.findViewById(R.id.button_yes);
             mDifferentButton = (Button) v.findViewById(R.id.button_no);
+            mButtonContainer = v.findViewById(R.id.button_container);
         }
     }
 

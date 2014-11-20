@@ -12,13 +12,13 @@ import com.furkantektas.braingames.R;
  * It handles all of the timer states.
  * Created by Furkan Tektas on 11/14/14.
  */
-public abstract class AbstractTimerGameActivity extends AbstractGameActivity {
+public abstract class AbstractTimerGameActivity extends AbstractGameActivity implements Chronometer.OnChronometerTickListener {
     private Chronometer mChronometer;
     private static final String LOG_NAME = "AbstractTimerGameActivity";
     private boolean mIsTimerRunning = false;
     private boolean mIsTimerInitialized = false;
     private long mTimeWhenStopped = 0l;
-    private int mMaxTime = 1000 * 60 * 3; // 5 min
+    private int mMaxTime = 1000 * 60 * 5; // 5 min
 
     protected void resetTimer() {
         if(mChronometer == null)
@@ -41,6 +41,7 @@ public abstract class AbstractTimerGameActivity extends AbstractGameActivity {
                 mIsTimerInitialized = true;
             } else // resuming
                 mChronometer.setBase(SystemClock.elapsedRealtime() - mTimeWhenStopped);
+            mChronometer.setOnChronometerTickListener(this);
             mChronometer.start();
             mIsTimerRunning = true;
         }
@@ -95,6 +96,24 @@ public abstract class AbstractTimerGameActivity extends AbstractGameActivity {
     }
 
     public long getElapsedTime() {
-        return SystemClock.elapsedRealtime() - mChronometer.getBase();
+        return getElapsedTime(mChronometer);
+    }
+
+    private long getElapsedTime(Chronometer chronometer) {
+        return SystemClock.elapsedRealtime() - chronometer.getBase();
+    }
+
+    public int getMaxTime() {
+        return mMaxTime;
+    }
+
+    public void setMaxTime(int mMaxTime) {
+        this.mMaxTime = mMaxTime;
+    }
+
+    @Override
+    public void onChronometerTick(Chronometer chronometer) {
+        if(getElapsedTime(chronometer) > getMaxTime())
+            finishGame();
     }
 }

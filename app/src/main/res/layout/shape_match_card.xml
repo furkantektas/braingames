@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="0dp"
+    android:layout_margin="0dp">
+    <com.furkantektas.braingames.ui.AspectRatioCardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/color_match_card"
+        android:layout_centerInParent="true"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="20dp"
+        card_view:cardCornerRadius="0dp"
+        card_view:ratio="0.75">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:baselineAligned="false"
+            android:weightSum="5">
+        <ImageView
+            android:id="@+id/shape"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@color/white"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_sm_home"
+             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/button_container"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="#FFCA28"
+            android:baselineAligned="false">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/different"
+                android:id="@+id/button_no"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_action_cancel"
+                style="@style/Widget.AppCompat.ActionButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                android:text="@string/same"
+                android:id="@+id/button_yes"
+                android:drawableRight="@drawable/ic_action_done"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.ActionButton" />
+        </LinearLayout>
+        </LinearLayout>
+    </com.furkantektas.braingames.ui.AspectRatioCardView>
+</RelativeLayout>

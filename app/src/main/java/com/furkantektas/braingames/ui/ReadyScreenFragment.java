@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.furkantektas.braingames.R;
-import com.furkantektas.braingames.ui.games.Game;
+import com.furkantektas.braingames.datatypes.Game;
 
 /**
  * A simple {@link Fragment} subclass.

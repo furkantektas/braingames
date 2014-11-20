@@ -1,35 +1,39 @@
 package com.furkantektas.braingames.ui.games;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterViewFlipper;
 import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.ColorMatchAdapter;
+import com.furkantektas.braingames.data.ShapeMatchAdapter;
 import com.furkantektas.braingames.datatypes.GameType;
 
-public class GameColorMatchActivity extends AbstractTimerGameActivity {
+/**
+ * Created by Furkan Tektas on 11/20/14.
+ */
+public class GameShapeMatchActivity extends AbstractTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;
-    private ColorMatchAdapter mAdapter;
-
     private static final int QUESTION_NUM = 25;
+    private ShapeMatchAdapter mAdapter;
+
+    @Override
+    public boolean hasReadyScreen() {
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setGameName(getApplicationContext().getResources().getString(R.string.game_color_match));
-        setGameType(GameType.COLOR_MATCH);
-        // show tutorial if user plays this game for the first time
-//        if(getShowTutorial()) {
-//            Intent i = new Intent(getApplicationContext(),TutColorMatchActivity.class);
-//            startActivity(i);
-//        }
-        setContentView(R.layout.activity_game_color_match);
-
+        setGameName(getApplicationContext().getResources().getString(R.string.game_shape_match));
+        setGameType(GameType.SHAPE_MATCH);
+        setContentView(R.layout.activity_game_shape_match);
 
         mAdapterFlipper = (AdapterViewFlipper)findViewById(R.id.flipper);
 
-        mAdapter = new ColorMatchAdapter(QUESTION_NUM, this, new View.OnClickListener() {
+        mAdapter = new ShapeMatchAdapter(QUESTION_NUM, this, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAdapterFlipper.showNext();
@@ -51,20 +55,21 @@ public class GameColorMatchActivity extends AbstractTimerGameActivity {
     public void startGame() {
         startTimer();
         mAdapterFlipper.setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mAdapterFlipper.showNext();
+            }
+        }, 1000);
     }
 
     @Override
     public void finishGame() {
         stopTimer();
-        Toast.makeText(getApplicationContext(),"Correct Results: "+mAdapter.getCorrectResults()+ "Time:"+getElapsedTime()/1000+"sec",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Correct Results: " + mAdapter.getCorrectResults() + "Time:" + getElapsedTime() / 1000 + "sec", Toast.LENGTH_LONG).show();
         super.finishGame();
     }
-
-    @Override
-    public boolean hasReadyScreen() {
-        return true;
-    }
-
 
     @Override
     public int getScore() {

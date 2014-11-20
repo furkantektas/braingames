@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
+import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
 
 
 public class MainActivity extends Activity {
@@ -23,11 +24,21 @@ public class MainActivity extends Activity {
 
         setSFX(new SFX(getApplicationContext()));
 
-        Button b = (Button) findViewById(R.id.button);
+        Button b = (Button) findViewById(R.id.button_color_match);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),GameColorMatchActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        Button b2 = (Button) findViewById(R.id.button_shape_match);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),GameShapeMatchActivity.class);
                 startActivity(i);
             }
         });
