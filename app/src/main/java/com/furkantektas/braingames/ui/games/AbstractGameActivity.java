@@ -110,6 +110,8 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
 
     @Override
     public void finishGame() {
+        System.gc(); // clean up
+        mGameStat.setScore(getScore());
         Intent i = new Intent(getApplicationContext(),GameResultActivity.class);
         i.putExtra(GameResultActivity.ARG_GAME_CLASS,this.getClass().toString());
         i.putExtra(GameResultActivity.ARG_SCORE,getScore());
@@ -143,11 +145,6 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
     @Override
     public void setTime(Date date) {
         mGameStat.setTime(date);
-    }
-
-    @Override
-    public int getScore() {
-        return mGameStat.getScore();
     }
 
     @Override

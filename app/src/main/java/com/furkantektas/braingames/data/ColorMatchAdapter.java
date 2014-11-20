@@ -28,7 +28,10 @@ public class ColorMatchAdapter extends BaseAdapter {
     private View.OnClickListener rightFullDiffOnClickListener;
     private View.OnClickListener wrongFullDiffOnClickListener;
 
-    private int correctResults = 0;
+    private int mCorrectResults = 0;
+    private int mAnsweredQuestionCount = 0;
+    private int mInitialSize = 1;
+
     /**
      * Initializes colorMatch Questions adapter with size elements.
      * @param size
@@ -37,8 +40,9 @@ public class ColorMatchAdapter extends BaseAdapter {
         this.mGame = game;
         parentRightOnClickListener = rightListener;
         parentWrongOnClickListener = wrongListener;
-        mDataSet = new ArrayList<ColorMatch>((int)(size*1.5));
-        generateDataset(size);
+        mInitialSize = size;
+        mDataSet = new ArrayList<ColorMatch>((int)(mInitialSize*1.5));
+        generateDataset(mInitialSize);
         initListeners();
     }
 
@@ -50,7 +54,7 @@ public class ColorMatchAdapter extends BaseAdapter {
         rightFullSameOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
@@ -65,7 +69,7 @@ public class ColorMatchAdapter extends BaseAdapter {
         rightFullDiffOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
@@ -84,8 +88,8 @@ public class ColorMatchAdapter extends BaseAdapter {
      */
     private void generateDataset(int size) {
         Random r = new Random();
-
-        for(int i = 0; i < size; ++i) {
+        int startInd = mDataSet.size();
+        for(int i = startInd; i < (startInd + size); ++i) {
             ColorMatch c;
             int rand1 = r.nextInt(ColorMatch.Color.values().length);
             int rand2 = r.nextInt(ColorMatch.Color.values().length);
@@ -100,6 +104,7 @@ public class ColorMatchAdapter extends BaseAdapter {
                 c = new ColorMatch(ColorMatch.generateColorName(rand1), ColorMatch.generateColor(rand2));
             mDataSet.add(c);
         }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -119,6 +124,7 @@ public class ColorMatchAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        ++mAnsweredQuestionCount;
         ColorMatchViewHolder vh;
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
@@ -135,37 +141,12 @@ public class ColorMatchAdapter extends BaseAdapter {
         vh.mColorName.setText(c.colorName.getResId());
         vh.mColorName.setBackgroundResource(c.color.getResId());
 
-        if((i+1) == getCount()) {
-            vh.mSameButton.setOnClickListener((c.isTrue() ? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    rightFullSameOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            } : new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    wrongFullSameOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            }));
-            vh.mDifferentButton.setOnClickListener((!c.isTrue() ? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    rightFullDiffOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            }: new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    wrongFullDiffOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            }));
-        } else {
-            vh.mSameButton.setOnClickListener((c.isTrue() ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
-            vh.mDifferentButton.setOnClickListener((!c.isTrue() ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
-        }
+        if((i+1) == getCount())
+            generateDataset(mInitialSize);
+
+        vh.mSameButton.setOnClickListener((c.isTrue() ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
+        vh.mDifferentButton.setOnClickListener((!c.isTrue() ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
+
 
         return view;
     }
@@ -176,6 +157,14 @@ public class ColorMatchAdapter extends BaseAdapter {
 
     public void setGame(Game mGame) {
         this.mGame = mGame;
+    }
+
+    public int getAnsweredQuestionCount() {
+        return mAnsweredQuestionCount;
+    }
+
+    public void setAnsweredQuestionCount(int mAnsweredQuestionCount) {
+        this.mAnsweredQuestionCount = mAnsweredQuestionCount;
     }
 
     public static class ColorMatchViewHolder {
@@ -191,6 +180,6 @@ public class ColorMatchAdapter extends BaseAdapter {
     }
 
     public int getCorrectResults() {
-        return correctResults;
+        return mCorrectResults;
     }
 }

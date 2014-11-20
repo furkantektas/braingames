@@ -3,4 +3,9 @@
     <declare-styleable name="AspectRatioCardView">
         <attr name="ratio" format="float" />
     </declare-styleable>
+    <declare-styleable name="CountDownTimerWidget">
+        <attr name="time" format="integer" />
+        <attr name="update_interval" format="integer" />
+        <attr name="format" format="string" />
+    </declare-styleable>
 </resources>

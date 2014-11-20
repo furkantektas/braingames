@@ -7,14 +7,13 @@ import android.widget.AdapterViewFlipper;
 import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
-import com.furkantektas.braingames.data.ColorMatchAdapter;
 import com.furkantektas.braingames.data.ShapeMatchAdapter;
 import com.furkantektas.braingames.datatypes.GameType;
 
 /**
  * Created by Furkan Tektas on 11/20/14.
  */
-public class GameShapeMatchActivity extends AbstractTimerGameActivity {
+public class GameShapeMatchActivity extends AbstractCountDownTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;
     private static final int QUESTION_NUM = 25;
     private ShapeMatchAdapter mAdapter;
@@ -66,18 +65,12 @@ public class GameShapeMatchActivity extends AbstractTimerGameActivity {
 
     @Override
     public void finishGame() {
-        stopTimer();
-        Toast.makeText(getApplicationContext(), "Correct Results: " + mAdapter.getCorrectResults() + "Time:" + getElapsedTime() / 1000 + "sec", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Correct Results: " + mAdapter.getCorrectResults(), Toast.LENGTH_LONG).show();
         super.finishGame();
     }
 
     @Override
     public int getScore() {
-        int correctResults = mAdapter.getCorrectResults();
-        float value_time = getElapsedTime()/(float)getMaxTime();
-        float true_rate_value = correctResults/(float)QUESTION_NUM;
-        float time_true_rate = true_rate_value/value_time;
-
-        return (int) time_true_rate * 1000;
+        return (int) Math.round((mAdapter.getCorrectResults()/(float)mAdapter.getAnsweredQuestionCount()) * 1000);
     }
 }

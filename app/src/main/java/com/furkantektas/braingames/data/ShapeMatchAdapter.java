@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.datatypes.Game;
@@ -28,8 +27,10 @@ public class ShapeMatchAdapter extends BaseAdapter {
     private View.OnClickListener wrongFullSameOnClickListener;
     private View.OnClickListener rightFullDiffOnClickListener;
     private View.OnClickListener wrongFullDiffOnClickListener;
+    private int mInitialSize = 25;
+    private int mAnsweredQuestionCount = 0;
 
-    private int correctResults = 0;
+    private int mCorrectResults = 0;
     /**
      * Initializes colorMatch Questions adapter with size elements.
      * @param size
@@ -38,8 +39,9 @@ public class ShapeMatchAdapter extends BaseAdapter {
         this.mGame = game;
         parentRightOnClickListener = rightListener;
         parentWrongOnClickListener = wrongListener;
-        mDataSet = new ArrayList<ShapeMatch>((int)(size*1.5));
-        generateDataset(size);
+        mInitialSize = size;
+        mDataSet = new ArrayList<ShapeMatch>((int)(mInitialSize*1.5));
+        generateDataset(mInitialSize);
         initListeners();
     }
 
@@ -51,7 +53,7 @@ public class ShapeMatchAdapter extends BaseAdapter {
         rightFullSameOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
@@ -66,7 +68,7 @@ public class ShapeMatchAdapter extends BaseAdapter {
         rightFullDiffOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
@@ -85,8 +87,8 @@ public class ShapeMatchAdapter extends BaseAdapter {
      */
     private void generateDataset(int size) {
         Random r = new Random();
-
-        for(int i = 0; i < (size + 1); ++i) {
+        int startInd = mDataSet.size();
+        for(int i = startInd; i < (startInd + size + 1); ++i) {
             int rand1 = r.nextInt(ShapeMatch.Shape.values().length);
             boolean isSame = (i > 0) && ((rand1 % 2) == 0);
 
@@ -102,6 +104,7 @@ public class ShapeMatchAdapter extends BaseAdapter {
                 newShape = new ShapeMatch(ShapeMatch.generateShape(rand1));
             mDataSet.add(newShape);
         }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -121,6 +124,7 @@ public class ShapeMatchAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        ++mAnsweredQuestionCount; // constraint: user cannot returned to answered question
         ShapeMatchViewHolder vh;
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
@@ -144,37 +148,12 @@ public class ShapeMatchAdapter extends BaseAdapter {
         final ShapeMatch sCurr = mDataSet.get(i);
         vh.mShape.setImageResource(sCurr.shape.getResId());
 
-        if((i+1) == getCount()) {
-            vh.mSameButton.setOnClickListener((sCurr.equals(sPrev) ? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    rightFullSameOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            } : new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    wrongFullSameOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            }));
-            vh.mDifferentButton.setOnClickListener((!sCurr.equals(sPrev) ? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    rightFullDiffOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            }: new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    wrongFullDiffOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            }));
-        } else if(i > 0) {
-            vh.mSameButton.setOnClickListener((sCurr.equals(sPrev) ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
-            vh.mDifferentButton.setOnClickListener((!sCurr.equals(sPrev) ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
-        }
+        if((i+1) == getCount())
+            generateDataset(mInitialSize);
+
+
+         vh.mSameButton.setOnClickListener((sCurr.equals(sPrev) ? rightFullSameOnClickListener : wrongFullSameOnClickListener));
+        vh.mDifferentButton.setOnClickListener((!sCurr.equals(sPrev) ? rightFullDiffOnClickListener : wrongFullDiffOnClickListener));
 
         return view;
     }
@@ -185,6 +164,14 @@ public class ShapeMatchAdapter extends BaseAdapter {
 
     public void setGame(Game mGame) {
         this.mGame = mGame;
+    }
+
+    public int getAnsweredQuestionCount() {
+        return mAnsweredQuestionCount;
+    }
+
+    public void setAnsweredQuestionCount(int mAnsweredQuestionCount) {
+        this.mAnsweredQuestionCount = mAnsweredQuestionCount;
     }
 
     public static class ShapeMatchViewHolder {
@@ -202,6 +189,6 @@ public class ShapeMatchAdapter extends BaseAdapter {
     }
 
     public int getCorrectResults() {
-        return correctResults;
+        return mCorrectResults;
     }
 }

@@ -9,7 +9,7 @@ import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.ColorMatchAdapter;
 import com.furkantektas.braingames.datatypes.GameType;
 
-public class GameColorMatchActivity extends AbstractTimerGameActivity {
+public class GameColorMatchActivity extends AbstractCountDownTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;
     private ColorMatchAdapter mAdapter;
 
@@ -55,8 +55,7 @@ public class GameColorMatchActivity extends AbstractTimerGameActivity {
 
     @Override
     public void finishGame() {
-        stopTimer();
-        Toast.makeText(getApplicationContext(),"Correct Results: "+mAdapter.getCorrectResults()+ "Time:"+getElapsedTime()/1000+"sec",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Correct Results: "+mAdapter.getCorrectResults(),Toast.LENGTH_LONG).show();
         super.finishGame();
     }
 
@@ -68,11 +67,6 @@ public class GameColorMatchActivity extends AbstractTimerGameActivity {
 
     @Override
     public int getScore() {
-        int correctResults = mAdapter.getCorrectResults();
-        float value_time = getElapsedTime()/(float)getMaxTime();
-        float true_rate_value = correctResults/(float)QUESTION_NUM;
-        float time_true_rate = true_rate_value/value_time;
-
-        return (int) time_true_rate * 1000;
+        return (int) Math.round((mAdapter.getCorrectResults()/(float)mAdapter.getAnsweredQuestionCount()) * 1000);
     }
 }
