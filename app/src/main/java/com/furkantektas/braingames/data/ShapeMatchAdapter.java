@@ -43,11 +43,7 @@ public class ShapeMatchAdapter extends BaseAdapter {
         initListeners();
     }
 
-    /**
-     * Generate button's OnClickListeners
-     */
-    private void initListeners() {
-        // for performance reasons, predefining onclicklisteners
+   private void initListeners() {
         rightFullSameOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

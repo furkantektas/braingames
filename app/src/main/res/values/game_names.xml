@@ -2,4 +2,5 @@
 <resources>
     <string name="game_color_match">Color Match</string>
     <string name="game_shape_match">Shape Match</string>
+    <string name="game_find_operation">Find Operation</string>
 </resources>

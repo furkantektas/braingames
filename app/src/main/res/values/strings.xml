@@ -28,4 +28,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_game_result">GameResultActivity</string>
 
+    <!-- Find Operation Game Operation Names -->
+    <string name="addition">Addition</string>
+    <string name="extraction">Extraction</string>
+    <string name="multiplication">Multiplication</string>
+    <string name="division">Division</string>
+
+
 </resources>
