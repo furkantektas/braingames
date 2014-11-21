@@ -12,16 +12,19 @@ import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
+import com.furkantektas.braingames.utils.GameStatManager;
 
 
 public class MainActivity extends Activity {
     private static SFX mSFX;
+    private static GameStatManager mGameStatManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setGameStatManager(new GameStatManager(getApplicationContext()));
         setSFX(new SFX(getApplicationContext()));
 
         Button b = (Button) findViewById(R.id.button_color_match);
@@ -70,5 +73,14 @@ public class MainActivity extends Activity {
 
     public static void setSFX(SFX mSFX) {
         MainActivity.mSFX = mSFX;
+    }
+
+
+    public static GameStatManager getGameStatManager() {
+        return mGameStatManager;
+    }
+
+    public static void setGameStatManager(GameStatManager mGameStatManager) {
+        MainActivity.mGameStatManager = mGameStatManager;
     }
 }

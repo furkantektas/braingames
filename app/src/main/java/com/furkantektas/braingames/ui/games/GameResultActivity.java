@@ -13,16 +13,22 @@ import android.widget.TextView;
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.ui.MainActivity;
 
+import org.w3c.dom.Text;
+
 public class GameResultActivity extends Activity {
 
     public static final String ARG_SCORE = "gameScore";
     public static final String ARG_GAME_CLASS = "gameClass";
+    public static final String ARG_HIGH_SCORE = "gameIsHighScore";
 
     private String mGameClass;
     private int mGameScore;
+    private boolean mIsHighScore = false;
+
     private TextView mScoreView;
     private Button mReplayButton;
     private Button mMainMenuButton;
+    private TextView mHighScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +38,18 @@ public class GameResultActivity extends Activity {
             if(bundle != null) {
                 mGameClass = bundle.getString(ARG_GAME_CLASS);
                 mGameScore = bundle.getInt(ARG_SCORE,0);
+                mIsHighScore = bundle.getBoolean(ARG_HIGH_SCORE);
             }
         } else {
             mGameClass = savedInstanceState.getString(ARG_GAME_CLASS);
             mGameScore = savedInstanceState.getInt(ARG_SCORE,0);
+            mIsHighScore = savedInstanceState.getBoolean(ARG_HIGH_SCORE);
         }
 
         setContentView(R.layout.activity_game_result);
         mScoreView = (TextView) findViewById(R.id.score_tv);
+        mHighScore = (TextView) findViewById(R.id.high_score);
+        mHighScore.setVisibility(mIsHighScore ? View.VISIBLE : View.GONE);
         mReplayButton = (Button) findViewById(R.id.replay_button);
         mMainMenuButton = (Button) findViewById(R.id.menu_button);
         mScoreView.setText(String.valueOf(mGameScore));

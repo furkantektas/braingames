@@ -27,5 +27,6 @@
     <string name="different">Different</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_game_result">GameResultActivity</string>
+    <string name="high_score">High Score</string>
 
 </resources>

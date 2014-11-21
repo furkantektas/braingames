@@ -7,17 +7,19 @@ import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.ColorMatchAdapter;
+import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameType;
 
 public class GameColorMatchActivity extends AbstractCountDownTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;
     private ColorMatchAdapter mAdapter;
-
     private static final int QUESTION_NUM = 25;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setGameName(getApplicationContext().getResources().getString(R.string.game_color_match));
+        setGameCategory(GameCategory.ATTENTION);
         setGameType(GameType.COLOR_MATCH);
         // show tutorial if user plays this game for the first time
 //        if(getShowTutorial()) {
@@ -65,6 +67,10 @@ public class GameColorMatchActivity extends AbstractCountDownTimerGameActivity {
     }
 
 
+    /**
+     * TODO: when user answers 1 question, gets a high score
+     * @return
+     */
     @Override
     public int getScore() {
         return (int) Math.round((mAdapter.getCorrectResults()/(float)mAdapter.getAnsweredQuestionCount()) * 1000);

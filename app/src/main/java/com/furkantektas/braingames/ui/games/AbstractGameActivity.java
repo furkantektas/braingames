@@ -9,10 +9,12 @@ import android.support.v7.app.ActionBarActivity;
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
 import com.furkantektas.braingames.datatypes.Game;
+import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameStat;
 import com.furkantektas.braingames.datatypes.GameType;
 import com.furkantektas.braingames.ui.MainActivity;
 import com.furkantektas.braingames.ui.ReadyScreenFragment;
+import com.furkantektas.braingames.utils.GameStatManager;
 
 import java.util.Date;
 
@@ -29,6 +31,7 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
     private SharedPreferences mPreferences;
     private Fragment mReadyScreenFragment;
     private static SFX mSFX;
+    private static GameStatManager mGameStatManager;
 
     public static final int GAME_RESULT_CODE = 0;
     public static final String ARG_ACTION = "FinalAction";
@@ -48,6 +51,7 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSFX = MainActivity.getSFX();
+        mGameStatManager = MainActivity.getGameStatManager();
         setPreferences(getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, android.content.Context.MODE_PRIVATE));
     }
 
@@ -112,9 +116,12 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
     public void finishGame() {
         System.gc(); // clean up
         mGameStat.setScore(getScore());
+        boolean isHighScore = mGameStatManager.saveGame(this);
+        System.out.println("isHighScore:"+isHighScore);
         Intent i = new Intent(getApplicationContext(),GameResultActivity.class);
         i.putExtra(GameResultActivity.ARG_GAME_CLASS,this.getClass().toString());
         i.putExtra(GameResultActivity.ARG_SCORE,getScore());
+        i.putExtra(GameResultActivity.ARG_HIGH_SCORE,isHighScore);
         startActivityForResult(i, GAME_RESULT_CODE);
     }
 
@@ -170,5 +177,15 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
     @Override
     public void setGameType(GameType type) {
         mGameStat.setGameType(type);
+    }
+
+    @Override
+    public GameCategory getGameCategory() {
+        return mGameStat.getGameCategory();
+    }
+
+    @Override
+    public void setGameCategory(GameCategory category) {
+        mGameStat.setGameCategory(category);
     }
 }

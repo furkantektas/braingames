@@ -10,6 +10,7 @@ public class GameStat implements GameStatInt {
     private String mGameName;
     private int mScore;
     private Date mTime;
+    private GameCategory mGameCategory;
 
     public GameStat() {
         mTime = new Date();
@@ -59,5 +60,15 @@ public class GameStat implements GameStatInt {
     @Override
     public void setTime(Date date) {
         mTime = date;
+    }
+
+    @Override
+    public void setGameCategory(GameCategory category) {
+        mGameCategory = category;
+    }
+
+    @Override
+    public GameCategory getGameCategory() {
+        return mGameCategory;
     }
 }

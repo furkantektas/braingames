@@ -53,4 +53,16 @@ public interface GameStatInt {
      * @param date
      */
     public void setTime(Date date);
+
+    /**
+     * Sets game category.
+     * @param category
+     */
+    public void setGameCategory(GameCategory category);
+
+    /**
+     * Returns game category.
+     * @return
+     */
+    public GameCategory getGameCategory();
 }

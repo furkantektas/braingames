@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.ShapeMatchAdapter;
+import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameType;
 
 /**
@@ -27,6 +28,7 @@ public class GameShapeMatchActivity extends AbstractCountDownTimerGameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setGameName(getApplicationContext().getResources().getString(R.string.game_shape_match));
+        setGameCategory(GameCategory.MEMORY);
         setGameType(GameType.SHAPE_MATCH);
         setContentView(R.layout.activity_game_shape_match);
 
@@ -69,6 +71,10 @@ public class GameShapeMatchActivity extends AbstractCountDownTimerGameActivity {
         super.finishGame();
     }
 
+    /**
+     * TODO: when user answers 1 question, gets a high score
+     * @return
+     */
     @Override
     public int getScore() {
         return (int) Math.round((mAdapter.getCorrectResults()/(float)mAdapter.getAnsweredQuestionCount()) * 1000);
