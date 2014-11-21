@@ -124,7 +124,8 @@ public class FindOperationAdapter  extends BaseAdapter{
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         FindOperationViewHolder vh;
-
+        ++mAnsweredQuestionCount;
+        
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.find_operation_card, viewGroup, false);
