@@ -8,17 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.furkantektas.braingames.R;
-import com.furkantektas.braingames.datatypes.MathOperation;
 import com.furkantektas.braingames.datatypes.Game;
+import com.furkantektas.braingames.datatypes.MathOperation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Sinan NAR on 21/11/14.
+ * Created by apple on 21/11/14.
  */
-public class FindOperationAdapter  extends BaseAdapter{
+public class CalculateFastAdapter   extends BaseAdapter {
+
     private List<MathOperation> mDataSet;
     private Game mGame;
 
@@ -29,16 +30,17 @@ public class FindOperationAdapter  extends BaseAdapter{
     private View.OnClickListener parentRightOnClickListener;
     private View.OnClickListener parentWrongOnClickListener;
 
-    private View.OnClickListener additionRightOnClickListener;
-    private View.OnClickListener additionWrongOnClickListener;
-    private View.OnClickListener extractionRightOnClickListener;
-    private View.OnClickListener extractionWrongOnClickListener;
-    private View.OnClickListener multiplicationRightOnClickListener;
-    private View.OnClickListener multiplicationWrongOnClickListener;
-    private View.OnClickListener divisionRightOnClickListener;
-    private View.OnClickListener divisionWorngOnClickListener;
+    private View.OnClickListener result1RightOnClickListener;
+    private View.OnClickListener result1WrongOnClickListener;
+    private View.OnClickListener result2RightOnClickListener;
+    private View.OnClickListener result2WrongOnClickListener;
+    private View.OnClickListener result3RightOnClickListener;
+    private View.OnClickListener result3WrongOnClickListener;
+    private View.OnClickListener result4RightOnClickListener;
+    private View.OnClickListener result4WrongOnClickListener;
 
-    public FindOperationAdapter(int size, Game game, final View.OnClickListener rightListener, View.OnClickListener wrongListener) {
+
+    public CalculateFastAdapter(int size, Game game, final View.OnClickListener rightListener, View.OnClickListener wrongListener) {
         this.mGame = game;
         mInitialSize = size;
         parentRightOnClickListener = rightListener;
@@ -48,62 +50,8 @@ public class FindOperationAdapter  extends BaseAdapter{
         initListeners();
     }
 
-    private void initListeners(){
-        additionRightOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ++mCorrectResults;
-                parentRightOnClickListener.onClick(view);
-            }
-        };
-        extractionRightOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ++mCorrectResults;;
-                parentRightOnClickListener.onClick(view);
-            }
-        };
-        multiplicationRightOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ++mCorrectResults;
-                parentRightOnClickListener.onClick(view);
-            }
-        };
-        divisionRightOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ++mCorrectResults;
-                parentRightOnClickListener.onClick(view);
-            }
-        };
 
-        additionWrongOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                parentWrongOnClickListener.onClick(view);
-            }
-        };
-        extractionWrongOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                parentWrongOnClickListener.onClick(view);
-            }
-        };
-        multiplicationWrongOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                parentWrongOnClickListener.onClick(view);
-            }
-        };
-        divisionWorngOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                parentWrongOnClickListener.onClick(view);
-            }
-        };
 
-    }
 
     @Override
     public int getCount() {
@@ -120,27 +68,128 @@ public class FindOperationAdapter  extends BaseAdapter{
         return i;
     }
 
+    private void generateDataset(int size) {
+        Random r = new Random();
+
+        for(int i = 0; i < size; ++i) {
+            MathOperation c;
+            int rand1 = r.nextInt(MathOperation.Operation.values().length);
+            c = new MathOperation(MathOperation.generateOperation(rand1));
+            mDataSet.add(c);
+        }
+    }
+
+    private void initListeners(){
+        result1RightOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ++mCorrectResults;
+                parentRightOnClickListener.onClick(view);
+            }
+        };
+        result2RightOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ++mCorrectResults;
+                parentRightOnClickListener.onClick(view);
+            }
+        };
+        result3RightOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ++mCorrectResults;
+                parentRightOnClickListener.onClick(view);
+            }
+        };
+        result4RightOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ++mCorrectResults;
+                parentRightOnClickListener.onClick(view);
+            }
+        };
+
+        result1WrongOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                parentWrongOnClickListener.onClick(view);
+            }
+        };
+        result2WrongOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                parentWrongOnClickListener.onClick(view);
+            }
+        };
+        result3WrongOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                parentWrongOnClickListener.onClick(view);
+            }
+        };
+        result4WrongOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                parentWrongOnClickListener.onClick(view);
+            }
+        };
+    }
+
+    public static class CalculateFastViewHolder {
+        public TextView mNumber1;
+        public TextView mNumber2;
+        public TextView mOperation;
+        public Button mResult1;
+        public Button mResult2;
+        public Button mResult3;
+        public Button mResult4;
+
+        public CalculateFastViewHolder(View v) {
+            mNumber1 = (TextView)v.findViewById(R.id.number1);
+            mNumber2 = (TextView)v.findViewById(R.id.number2);
+            mOperation = (TextView)v.findViewById(R.id.operation);
+            mResult1 = (Button) v.findViewById(R.id.result1);
+            mResult2 = (Button) v.findViewById(R.id.result2);
+            mResult3 = (Button) v.findViewById(R.id.result3);
+            mResult4 = (Button) v.findViewById(R.id.result4);
+        }
+    }
+
+    public Game getGame() {
+        return mGame;
+    }
+
+    public void setGame(Game mGame) {
+        this.mGame = mGame;
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        FindOperationViewHolder vh;
+        CalculateFastViewHolder vh;
 
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.find_operation_card, viewGroup, false);
 
-            vh = new FindOperationViewHolder(view);
+            vh = new CalculateFastViewHolder(view);
             view.setTag(vh);
         } else {
-            vh = (FindOperationViewHolder) view.getTag();
+            vh = (CalculateFastViewHolder) view.getTag();
         }
         System.out.println("i="+i);
-
         final MathOperation c = mDataSet.get(i);
         vh.mNumber1.setText(""+c.getFirstNumber());
         vh.mNumber2.setText(""+c.getSecondNumber());
-        vh.mResult.setText(""+c.getResult());
-        if((i+1) == getCount()){
-            vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.Operation.ADDITION)? new View.OnClickListener() {
+        switch (c.mOperation){
+            case ADDITION:vh.mOperation.setText("+");break;
+            case EXTRACTION:vh.mOperation.setText("-");break;
+            case MULTIPLICATION:vh.mOperation.setText("*");break;
+            case DIVISION:vh.mOperation.setText("/");break;
+        }
+
+
+        if((i+1) == getCount()){/*
+            vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     additionRightOnClickListener.onClick(view);
@@ -154,7 +203,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mExtractionButton.setOnClickListener(c.isOperation(MathOperation.Operation.EXTRACTION)? new View.OnClickListener() {
+            vh.mExtractionButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     extractionRightOnClickListener.onClick(view);
@@ -168,7 +217,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mMultiplicationButton.setOnClickListener(c.isOperation(MathOperation.Operation.MULTIPLICATION)? new View.OnClickListener() {
+            vh.mMultiplicationButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     multiplicationRightOnClickListener.onClick(view);
@@ -182,7 +231,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mDivisionButton.setOnClickListener(c.isOperation(MathOperation.Operation.DIVISION)? new View.OnClickListener() {
+            vh.mDivisionButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     divisionWorngOnClickListener.onClick(view);
@@ -194,70 +243,16 @@ public class FindOperationAdapter  extends BaseAdapter{
                     divisionRightOnClickListener.onClick(view);
                     getGame().finishGame();
                 }
-            });
+            });*/
         }
         else{
-            vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.Operation.ADDITION)?additionRightOnClickListener:additionWrongOnClickListener);
-            vh.mExtractionButton.setOnClickListener(c.isOperation(MathOperation.Operation.EXTRACTION)?extractionRightOnClickListener:extractionWrongOnClickListener);
-            vh.mMultiplicationButton.setOnClickListener(c.isOperation(MathOperation.Operation.MULTIPLICATION)?multiplicationRightOnClickListener:multiplicationWrongOnClickListener);
-            vh.mDivisionButton.setOnClickListener(c.isOperation(MathOperation.Operation.DIVISION)?divisionRightOnClickListener:divisionWorngOnClickListener);
+            vh.mResult1.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult1.getText().toString()).intValue())?result1RightOnClickListener:result1WrongOnClickListener);
+            vh.mResult2.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult2.getText().toString()).intValue())?result2RightOnClickListener:result2WrongOnClickListener);
+            vh.mResult3.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult3.getText().toString()).intValue())?result3RightOnClickListener:result3WrongOnClickListener);
+            vh.mResult4.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult4.getText().toString()).intValue())?result4RightOnClickListener:result4WrongOnClickListener);
         }
 
 
         return view;
     }
-
-
-    /**
-     * Extends current dataset by size.
-     * @param size
-     */
-    private void generateDataset(int size) {
-        Random r = new Random();
-
-        for(int i = 0; i < size; ++i) {
-            MathOperation c;
-            int rand1 = r.nextInt(MathOperation.Operation.values().length);
-            c = new MathOperation(MathOperation.generateOperation(rand1));
-            mDataSet.add(c);
-        }
-    }
-    public Game getGame() {
-        return mGame;
-    }
-
-    public void setGame(Game mGame) {
-        this.mGame = mGame;
-    }
-
-    public static class FindOperationViewHolder {
-        public TextView mNumber1;
-        public TextView mNumber2;
-        public TextView mResult;
-        public Button mAdditionButton;
-        public Button mExtractionButton;
-        public Button mMultiplicationButton;
-        public Button mDivisionButton;
-
-        public FindOperationViewHolder(View v) {
-            mNumber1 = (TextView)v.findViewById(R.id.number1);
-            mNumber2 = (TextView)v.findViewById(R.id.number2);
-            mResult = (TextView)v.findViewById(R.id.result);
-            mAdditionButton = (Button) v.findViewById(R.id.addition);
-            mExtractionButton = (Button) v.findViewById(R.id.extraction);
-            mMultiplicationButton = (Button) v.findViewById(R.id.multiplication);
-            mDivisionButton = (Button) v.findViewById(R.id.division);
-        }
-    }
-    public int getAnsweredQuestionCount() {
-        return mAnsweredQuestionCount;
-    }
-    public void setAnsweredQuestionCount(int mAnsweredQuestionCount) {
-        this.mAnsweredQuestionCount = mAnsweredQuestionCount;
-    }
-
-    public int getCorrectResults() {
-        return mCorrectResults;
-    }
-
 }

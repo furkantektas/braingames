@@ -84,9 +84,11 @@ public class MathOperation {
         return (sOther.mOperation.resId == mOperation.resId);
     }
 
-    public boolean isTrue(Operation o){
+    public boolean isOperation(Operation o){
         return mOperation.getResId() == o.getResId();
     }
+    public boolean isResult(int r){return r==this.result;}
+
 
     public int getFirstNumber() {
         return firstNumber;
