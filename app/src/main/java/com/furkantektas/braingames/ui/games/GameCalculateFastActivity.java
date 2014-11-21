@@ -12,7 +12,7 @@ import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameType;
 
 /**
- * Created by apple on 21/11/14.
+ * Created by Sinan NAR on 21/11/14.
  */
 public class GameCalculateFastActivity extends AbstractCountDownTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by apple on 21/11/14.
+ * Created by Sinan NAR on 21/11/14.
  */
 public class CalculateFastAdapter   extends BaseAdapter {
 
