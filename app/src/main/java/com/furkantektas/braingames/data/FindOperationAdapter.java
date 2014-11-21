@@ -8,8 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.furkantektas.braingames.R;
-import com.furkantektas.braingames.datatypes.FindOperation;
+import com.furkantektas.braingames.datatypes.MathOperation;
 import com.furkantektas.braingames.datatypes.Game;
+import com.furkantektas.braingames.datatypes.MathOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Random;
  * Created by Sinan NAR on 21/11/14.
  */
 public class FindOperationAdapter  extends BaseAdapter{
-    private List<FindOperation> mDataSet;
+    private List<MathOperation> mDataSet;
     private Game mGame;
     private int correctResults = 0;
 
@@ -39,7 +40,7 @@ public class FindOperationAdapter  extends BaseAdapter{
         this.mGame = game;
         parentRightOnClickListener = rightListener;
         parentWrongOnClickListener = wrongListener;
-        mDataSet = new ArrayList<FindOperation>((int)(size*1.5));
+        mDataSet = new ArrayList<MathOperation>((int)(size*1.5));
         generateDataset(size);
         initListeners();
     }
@@ -131,12 +132,12 @@ public class FindOperationAdapter  extends BaseAdapter{
         }
         System.out.println("i="+i);
 
-        final FindOperation c = mDataSet.get(i);
+        final MathOperation c = mDataSet.get(i);
         vh.mNumber1.setText(""+c.getFirstNumber());
         vh.mNumber2.setText(""+c.getSecondNumber());
         vh.mResult.setText(""+c.getResult());
         if((i+1) == getCount()){
-            vh.mAdditionButton.setOnClickListener(c.isTrue(FindOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mAdditionButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     additionRightOnClickListener.onClick(view);
@@ -150,7 +151,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mExtractionButton.setOnClickListener(c.isTrue(FindOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mExtractionButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     extractionRightOnClickListener.onClick(view);
@@ -164,7 +165,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mMultiplicationButton.setOnClickListener(c.isTrue(FindOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mMultiplicationButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     multiplicationRightOnClickListener.onClick(view);
@@ -178,7 +179,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mDivisionButton.setOnClickListener(c.isTrue(FindOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mDivisionButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     divisionWorngOnClickListener.onClick(view);
@@ -193,10 +194,10 @@ public class FindOperationAdapter  extends BaseAdapter{
             });
         }
         else{
-            vh.mAdditionButton.setOnClickListener(c.isTrue(FindOperation.Operation.ADDITION)?additionRightOnClickListener:additionWrongOnClickListener);
-            vh.mExtractionButton.setOnClickListener(c.isTrue(FindOperation.Operation.EXTRACTION)?extractionRightOnClickListener:extractionWrongOnClickListener);
-            vh.mMultiplicationButton.setOnClickListener(c.isTrue(FindOperation.Operation.MULTIPLICATION)?multiplicationRightOnClickListener:multiplicationWrongOnClickListener);
-            vh.mDivisionButton.setOnClickListener(c.isTrue(FindOperation.Operation.DIVISION)?divisionRightOnClickListener:divisionWorngOnClickListener);
+            vh.mAdditionButton.setOnClickListener(c.isTrue(MathOperation.Operation.ADDITION)?additionRightOnClickListener:additionWrongOnClickListener);
+            vh.mExtractionButton.setOnClickListener(c.isTrue(MathOperation.Operation.EXTRACTION)?extractionRightOnClickListener:extractionWrongOnClickListener);
+            vh.mMultiplicationButton.setOnClickListener(c.isTrue(MathOperation.Operation.MULTIPLICATION)?multiplicationRightOnClickListener:multiplicationWrongOnClickListener);
+            vh.mDivisionButton.setOnClickListener(c.isTrue(MathOperation.Operation.DIVISION)?divisionRightOnClickListener:divisionWorngOnClickListener);
         }
 
 
@@ -212,14 +213,22 @@ public class FindOperationAdapter  extends BaseAdapter{
         Random r = new Random();
 
         for(int i = 0; i < size; ++i) {
-            FindOperation c;
-            int num1 = r.nextInt(100),num2;
-            int rand1 = r.nextInt(FindOperation.Operation.values().length);
-            if(rand1 == 2 || rand1 == 3)
-                num2 = r.nextInt(10);
+            MathOperation c;
+            int num1,num2;
+            int rand1 = r.nextInt(MathOperation.Operation.values().length);
+
+            do {
+                num1 = r.nextInt(10);
+            }while(num1 == 0 || num1 == 1);
+
+            if(rand1 == 2 || rand1 == 3){
+                do {
+                    num2 = r.nextInt(10);
+                }while(num2 == 0 || num2 == 1);
+            }
             else
                 num2 = r.nextInt(100);
-            c = new FindOperation(FindOperation.generateOperation(rand1),num1,num2);
+            c = new MathOperation(MathOperation.generateOperation(rand1),num1,num2);
 
             mDataSet.add(c);
         }

@@ -5,22 +5,22 @@ import com.furkantektas.braingames.R;
 /**
  * Created by Sinan NAR on 21/11/14.
  */
-public class FindOperation {
+public class MathOperation {
 
     public Operation mOperation;
     private int firstNumber;
     private int secondNumber;
-    private double result;
+    private int result;
 
-    public FindOperation(Operation operation,int firstNumber,int secondNumber) {
+    public MathOperation(Operation operation,int firstNumber,int secondNumber) {
         this.mOperation = operation;
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
         switch (mOperation.getResId()){
-            case R.string.addition:{result = (double)firstNumber + secondNumber;}break;
-            case R.string.extraction:{result = (double)firstNumber - secondNumber;}break;
-            case R.string.multiplication:{result = (double)firstNumber * secondNumber;}break;
-            case R.string.division:{result = (double)firstNumber / secondNumber;}break;
+            case R.string.addition:{result = firstNumber + secondNumber;}break;
+            case R.string.extraction:{result = firstNumber - secondNumber;}break;
+            case R.string.multiplication:{result = firstNumber * secondNumber;}break;
+            case R.string.division:{result = firstNumber / secondNumber;}break;
         }
     }
 
@@ -29,7 +29,7 @@ public class FindOperation {
         if (o == null) return false;
         if (o == this) return true;
         if (!(o instanceof Operation))return false;
-        FindOperation sOther = (FindOperation)o;
+        MathOperation sOther = (MathOperation)o;
         return (sOther.mOperation.resId == mOperation.resId);
     }
 
@@ -53,11 +53,11 @@ public class FindOperation {
         this.secondNumber = secondNumber;
     }
 
-    public double getResult() {
+    public int getResult() {
         return result;
     }
 
-    public void setResult(double result) {
+    public void setResult(int result) {
         this.result = result;
     }
 
