@@ -2,6 +2,7 @@ package com.furkantektas.braingames.datatypes;
 
 import com.furkantektas.braingames.R;
 
+import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -129,6 +130,28 @@ public class MathOperation {
         public int getResId() {
             return resId;
         }
+    }
+
+    public ArrayList<Integer> generateResults(){
+        ArrayList<Integer> results = new ArrayList<Integer>();
+        /*
+        Random r = new Random();
+        int randomStart = r.nextInt(4);
+        randomStart = randomStart-4;
+        switch (mOperation){
+            case ADDITION:
+            case EXTRACTION:
+            case MULTIPLICATION:
+            case DIVISION:{
+
+            }break;
+        }
+        */
+        for(int i=result-1;i<result+3;++i)
+            results.add(new Integer(i));
+
+
+        return results;
     }
 
     public static Operation generateOperation(int ind) {

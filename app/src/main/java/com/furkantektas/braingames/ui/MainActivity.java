@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
+import com.furkantektas.braingames.ui.games.GameCalculateFastActivity;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
@@ -47,12 +48,21 @@ public class MainActivity extends Activity {
             }
         });
 
-        Button b3 = (Button) findViewById(R.id.button_find_operation);
-        b3.setOnClickListener(new View.OnClickListener() {
+        Button find_operation = (Button) findViewById(R.id.button_find_operation);
+        find_operation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),GameFindOperationActivity.class);
-                startActivity(i);
+                Intent find_operation_intent = new Intent(getApplicationContext(),GameFindOperationActivity.class);
+                startActivity(find_operation_intent);
+            }
+        });
+
+        Button calculate_fast = (Button) findViewById(R.id.button_calculate_fast);
+        calculate_fast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent calculate_fast_intent = new Intent(getApplicationContext(),GameCalculateFastActivity.class);
+                startActivity(calculate_fast_intent);
             }
         });
 

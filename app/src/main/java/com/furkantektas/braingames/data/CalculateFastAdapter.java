@@ -169,7 +169,7 @@ public class CalculateFastAdapter   extends BaseAdapter {
 
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.find_operation_card, viewGroup, false);
+                    .inflate(R.layout.calculate_fast_card, viewGroup, false);
 
             vh = new CalculateFastViewHolder(view);
             view.setTag(vh);
@@ -187,72 +187,101 @@ public class CalculateFastAdapter   extends BaseAdapter {
             case DIVISION:vh.mOperation.setText("/");break;
         }
 
+        ArrayList<Integer> results = c.generateResults();
+        vh.mResult1.setText(""+results.get(0));
+        vh.mResult2.setText(""+results.get(1));
+        vh.mResult3.setText(""+results.get(2));
+        vh.mResult4.setText(""+results.get(3));
 
-        if((i+1) == getCount()){/*
-            vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    additionRightOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            } : new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    additionWrongOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            });
 
-            vh.mExtractionButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    extractionRightOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            } : new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    extractionWrongOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            });
-
-            vh.mMultiplicationButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    multiplicationRightOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            } : new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    multiplicationWrongOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            });
-
-            vh.mDivisionButton.setOnClickListener(c.isOperation(MathOperation.generateOperation(0))? new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    divisionWorngOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            } : new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    divisionRightOnClickListener.onClick(view);
-                    getGame().finishGame();
-                }
-            });*/
+        if((i+1) == getCount()){
+            vh.mResult1.setOnClickListener(c.isResult(results.get(0).intValue())?
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result1RightOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    }
+                    :
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result1WrongOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    });
+            vh.mResult2.setOnClickListener(c.isResult(results.get(1).intValue())?
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result2RightOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    }
+                    :
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result2WrongOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    });
+            vh.mResult3.setOnClickListener(c.isResult(results.get(2).intValue())?
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result3RightOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    }
+                    :
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result3WrongOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    });
+            vh.mResult4.setOnClickListener(c.isResult(results.get(3).intValue())?
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result4RightOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    }
+                    :
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            result4WrongOnClickListener.onClick(view);
+                            getGame().finishGame();
+                        }
+                    });
         }
         else{
-            vh.mResult1.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult1.getText().toString()).intValue())?result1RightOnClickListener:result1WrongOnClickListener);
-            vh.mResult2.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult2.getText().toString()).intValue())?result2RightOnClickListener:result2WrongOnClickListener);
-            vh.mResult3.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult3.getText().toString()).intValue())?result3RightOnClickListener:result3WrongOnClickListener);
-            vh.mResult4.setOnClickListener(c.isResult(Integer.getInteger(vh.mResult4.getText().toString()).intValue())?result4RightOnClickListener:result4WrongOnClickListener);
+
+            vh.mResult1.setOnClickListener(c.isResult(results.get(0).intValue())?result1RightOnClickListener:result1WrongOnClickListener);
+            vh.mResult2.setOnClickListener(c.isResult(results.get(1).intValue())?result2RightOnClickListener:result2WrongOnClickListener);
+            vh.mResult3.setOnClickListener(c.isResult(results.get(2).intValue())?result3RightOnClickListener:result3WrongOnClickListener);
+            vh.mResult4.setOnClickListener(c.isResult(results.get(3).intValue())?result4RightOnClickListener:result4WrongOnClickListener);
         }
 
 
         return view;
     }
+
+    public int getAnsweredQuestionCount() {
+        return mAnsweredQuestionCount;
+    }
+    public void setAnsweredQuestionCount(int mAnsweredQuestionCount) {
+        this.mAnsweredQuestionCount = mAnsweredQuestionCount;
+    }
+
+    public int getCorrectResults() {
+        return mCorrectResults;
+    }
+
+
 }

@@ -249,6 +249,7 @@ public class FindOperationAdapter  extends BaseAdapter{
             mDivisionButton = (Button) v.findViewById(R.id.division);
         }
     }
+
     public int getAnsweredQuestionCount() {
         return mAnsweredQuestionCount;
     }
