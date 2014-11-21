@@ -35,8 +35,8 @@ public class MathOperation {
             {
                 do{
                     firstNumber = r.nextInt(10);
-                    secondNumber = r.nextInt(10);
-                }while(firstNumber == 0 || firstNumber == 1 || secondNumber == 0 || secondNumber == 1);
+                    secondNumber = r.nextInt(20);
+                }while(firstNumber == 0 || firstNumber == 1 || secondNumber <4);
 
             }
             break;
@@ -134,21 +134,40 @@ public class MathOperation {
 
     public ArrayList<Integer> generateResults(){
         ArrayList<Integer> results = new ArrayList<Integer>();
-        /*
+
         Random r = new Random();
         int randomStart = r.nextInt(4);
-        randomStart = randomStart-4;
+
         switch (mOperation){
             case ADDITION:
-            case EXTRACTION:
-            case MULTIPLICATION:
+            case EXTRACTION:{
+                for(int i=0;i<randomStart;++i){
+                    results.add(new Integer(result-i));
+                }
+                results.add(new Integer(result));
+                for(int i=randomStart+1;i<4;++i){
+                    results.add(new Integer(result+i));
+                }
+            }break;
+            case MULTIPLICATION:{
+                for(int i=0;i<randomStart;++i){
+                    results.add(new Integer(firstNumber*(secondNumber-i)));
+                }
+                results.add(new Integer(result));
+                for(int i=randomStart+1;i<4;++i){
+                    results.add(new Integer(firstNumber*(secondNumber+i)));
+                }
+            }break;
             case DIVISION:{
-
+                for(int i=0;i<randomStart;++i){
+                    results.add(new Integer(firstNumber/(secondNumber-i)));
+                }
+                results.add(new Integer(result));
+                for(int i=randomStart+1;i<4;++i){
+                    results.add(new Integer(firstNumber/(secondNumber+i)));
+                }
             }break;
         }
-        */
-        for(int i=result-1;i<result+3;++i)
-            results.add(new Integer(i));
 
 
         return results;
