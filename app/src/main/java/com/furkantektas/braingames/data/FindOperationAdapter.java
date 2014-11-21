@@ -22,7 +22,10 @@ import java.util.Random;
 public class FindOperationAdapter  extends BaseAdapter{
     private List<MathOperation> mDataSet;
     private Game mGame;
-    private int correctResults = 0;
+
+    private int mCorrectResults = 0;
+    private int mAnsweredQuestionCount = 0;
+    private int mInitialSize = 1;
 
     private View.OnClickListener parentRightOnClickListener;
     private View.OnClickListener parentWrongOnClickListener;
@@ -38,6 +41,7 @@ public class FindOperationAdapter  extends BaseAdapter{
 
     public FindOperationAdapter(int size, Game game, final View.OnClickListener rightListener, View.OnClickListener wrongListener) {
         this.mGame = game;
+        mInitialSize = size;
         parentRightOnClickListener = rightListener;
         parentWrongOnClickListener = wrongListener;
         mDataSet = new ArrayList<MathOperation>((int)(size*1.5));
@@ -49,28 +53,28 @@ public class FindOperationAdapter  extends BaseAdapter{
         additionRightOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
         extractionRightOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;;
                 parentRightOnClickListener.onClick(view);
             }
         };
         multiplicationRightOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
         divisionRightOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++correctResults;
+                ++mCorrectResults;
                 parentRightOnClickListener.onClick(view);
             }
         };
@@ -246,9 +250,15 @@ public class FindOperationAdapter  extends BaseAdapter{
             mDivisionButton = (Button) v.findViewById(R.id.division);
         }
     }
+    public int getAnsweredQuestionCount() {
+        return mAnsweredQuestionCount;
+    }
+    public void setAnsweredQuestionCount(int mAnsweredQuestionCount) {
+        this.mAnsweredQuestionCount = mAnsweredQuestionCount;
+    }
 
     public int getCorrectResults() {
-        return correctResults;
+        return mCorrectResults;
     }
 
 }

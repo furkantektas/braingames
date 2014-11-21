@@ -7,12 +7,13 @@ import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.FindOperationAdapter;
+import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameType;
 
 /**
  * Created by apple on 21/11/14.
  */
-public class GameFindOperationActivity extends AbstractTimerGameActivity{
+public class GameFindOperationActivity extends AbstractCountDownTimerGameActivity{
     private AdapterViewFlipper mAdapterFlipper;
     private FindOperationAdapter mAdapter;
 
@@ -22,6 +23,7 @@ public class GameFindOperationActivity extends AbstractTimerGameActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setGameName(getApplicationContext().getResources().getString(R.string.game_find_operation));
+        setGameCategory(GameCategory.PROBLEM_SOLVING);
         setGameType(GameType.FIND_OPERATION);
 
         setContentView(R.layout.activity_game_find_operation);
@@ -56,8 +58,7 @@ public class GameFindOperationActivity extends AbstractTimerGameActivity{
 
     @Override
     public void finishGame() {
-        stopTimer();
-        Toast.makeText(getApplicationContext(), "Correct Results: " + mAdapter.getCorrectResults() + "Time:" + getElapsedTime() / 1000 + "sec", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Correct Results: "+mAdapter.getCorrectResults(),Toast.LENGTH_LONG).show();
         super.finishGame();
     }
 
@@ -66,13 +67,13 @@ public class GameFindOperationActivity extends AbstractTimerGameActivity{
         return true;
     }
 
-
+    /**
+     * TODO: when user answers 1 question, gets a high score
+     * @return
+     */
     @Override
     public int getScore() {
-        int correctResults = mAdapter.getCorrectResults();
-        float value_time = getElapsedTime()/(float)getMaxTime();
-        float true_rate_value = correctResults/(float)QUESTION_NUM;
-        float time_true_rate = true_rate_value/value_time;
-        return (int) time_true_rate * 1000;
+        return (int) Math.round((mAdapter.getCorrectResults()/(float)mAdapter.getAnsweredQuestionCount()) * 1000);
     }
+
 }

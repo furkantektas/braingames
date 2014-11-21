@@ -43,7 +43,9 @@ public class MathOperation {
             {
                 ArrayList<Integer> primeNumbers;
                 do{
-                    firstNumber = r.nextInt(100);
+                    do{
+                        firstNumber = r.nextInt(100);
+                    }while(firstNumber<50);
                     primeNumbers = findPrimeFactors(firstNumber);
                     secondNumber = primeNumbers.get(primeNumbers.size()-1).intValue();
                 }while(firstNumber == 0 || firstNumber == 1 || primeNumbers.size()<2);
