@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
+import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
 import com.furkantektas.braingames.utils.GameStatManager;
 
@@ -45,6 +46,17 @@ public class MainActivity extends Activity {
                 startActivity(i);
             }
         });
+
+        Button b3 = (Button) findViewById(R.id.button_find_operation);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),GameFindOperationActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 
 

@@ -29,4 +29,11 @@
     <string name="title_activity_game_result">GameResultActivity</string>
     <string name="high_score">High Score</string>
 
+    <!-- Find Operation Game Operation Names -->
+    <string name="addition">Addition</string>
+    <string name="extraction">Extraction</string>
+    <string name="multiplication">Multiplication</string>
+    <string name="division">Division</string>
+
+
 </resources>

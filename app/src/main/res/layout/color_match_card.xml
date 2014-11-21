@@ -29,7 +29,6 @@
             android:textColor="@color/white"
             android:text="@string/orange"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAllCaps="true"
             android:textSize="48sp"
             android:gravity="center"
