@@ -2,6 +2,10 @@ package com.furkantektas.braingames.datatypes;
 
 import com.furkantektas.braingames.R;
 
+import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Created by Sinan NAR on 21/11/14.
  */
@@ -12,15 +16,60 @@ public class MathOperation {
     private int secondNumber;
     private int result;
 
-    public MathOperation(Operation operation,int firstNumber,int secondNumber) {
+    public MathOperation(Operation operation) {
+        Random r = new Random();
+        this.mOperation = operation;
+        switch (mOperation){
+            case ADDITION:
+            case EXTRACTION:
+            {
+                do{
+                    firstNumber = r.nextInt(100);
+                    secondNumber = r.nextInt(10);
+                }while(firstNumber == 0 || firstNumber == 1 || secondNumber == 0 || secondNumber == 1);
+
+            }
+            break;
+            case MULTIPLICATION:
+            {
+                do{
+                    firstNumber = r.nextInt(10);
+                    secondNumber = r.nextInt(10);
+                }while(firstNumber == 0 || firstNumber == 1 || secondNumber == 0 || secondNumber == 1);
+
+            }
+            break;
+            case DIVISION:
+            {
+                ArrayList<Integer> primeNumbers;
+                do{
+                    firstNumber = r.nextInt(100);
+                    primeNumbers = findPrimeFactors(firstNumber);
+                    secondNumber = primeNumbers.get(primeNumbers.size()-1).intValue();
+                }while(firstNumber == 0 || firstNumber == 1 || primeNumbers.size()<2);
+
+            }
+            break;
+        }
+
+        switch (mOperation){
+            case ADDITION:{result = firstNumber + secondNumber;}break;
+            case EXTRACTION:{result = firstNumber - secondNumber;}break;
+            case MULTIPLICATION:{result = firstNumber * secondNumber;}break;
+            case DIVISION:{result = firstNumber / secondNumber;}break;
+        }
+
+    }
+
+        public MathOperation(Operation operation,int firstNumber,int secondNumber) {
         this.mOperation = operation;
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
-        switch (mOperation.getResId()){
-            case R.string.addition:{result = firstNumber + secondNumber;}break;
-            case R.string.extraction:{result = firstNumber - secondNumber;}break;
-            case R.string.multiplication:{result = firstNumber * secondNumber;}break;
-            case R.string.division:{result = firstNumber / secondNumber;}break;
+        switch (mOperation){
+            case ADDITION:{result = firstNumber + secondNumber;}break;
+            case EXTRACTION:{result = firstNumber - secondNumber;}break;
+            case MULTIPLICATION:{result = firstNumber * secondNumber;}break;
+            case DIVISION:{result = firstNumber / secondNumber;}break;
         }
     }
 
@@ -86,6 +135,19 @@ public class MathOperation {
             ind = (ind + operations.length) % operations.length;
 
         return operations[ind];
+    }
+
+
+    private static ArrayList<Integer> findPrimeFactors(int number) {
+        int n = number;
+        ArrayList<Integer> factors = new ArrayList<Integer>();
+        for (int i = 2; i <= n; i++) {
+            while (n % i == 0) {
+                factors.add(i);
+                n /= i;
+            }
+        }
+        return factors;
     }
 
 }

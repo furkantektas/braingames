@@ -214,9 +214,10 @@ public class FindOperationAdapter  extends BaseAdapter{
 
         for(int i = 0; i < size; ++i) {
             MathOperation c;
-            int num1,num2;
-            int rand1 = r.nextInt(MathOperation.Operation.values().length);
 
+            //int num1,num2;
+            int rand1 = r.nextInt(MathOperation.Operation.values().length);
+/*
             do {
                 num1 = r.nextInt(10);
             }while(num1 == 0 || num1 == 1);
@@ -229,7 +230,8 @@ public class FindOperationAdapter  extends BaseAdapter{
             else
                 num2 = r.nextInt(100);
             c = new MathOperation(MathOperation.generateOperation(rand1),num1,num2);
-
+*/
+            c = new MathOperation(MathOperation.generateOperation(rand1));
             mDataSet.add(c);
         }
     }
