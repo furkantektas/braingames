@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="card_ratio" format="float"></attr>
     <declare-styleable name="AspectRatioCardView">
-        <attr name="ratio" format="float" />
+        <attr name="card_ratio" />
     </declare-styleable>
     <declare-styleable name="CountDownTimerWidget">
         <attr name="time" format="integer" />
