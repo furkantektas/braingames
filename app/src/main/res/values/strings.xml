@@ -11,6 +11,8 @@
     <string name="start_game">Start</string>
     <string name="replay_button">Replay</string>
     <string name="main_menu_button">Main Menu</string>
+    <string name="title_activity_game_memory_matrix">GameMemoryMatrix</string>
+
 
     <!-- Color Match Game Color Names -->
     <string name="red">Red</string>
@@ -34,6 +36,5 @@
     <string name="extraction">Extraction</string>
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
-    <string name="title_activity_game_memory_matrix">GameMemoryMatrix</string>
 
 </resources>

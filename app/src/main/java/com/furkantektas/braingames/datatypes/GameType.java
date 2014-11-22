@@ -6,5 +6,6 @@ package com.furkantektas.braingames.datatypes;
 public enum GameType {
     SHAPE_MATCH,
     COLOR_MATCH,
-    FIND_OPERATION
+    FIND_OPERATION,
+    MEMORY_MATRIX
 }

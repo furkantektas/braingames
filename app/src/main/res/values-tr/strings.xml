@@ -22,4 +22,6 @@
     <string name="game_shape_match">Şekil Eşleştirme</string>
     <string name="main_menu_button">Ana Menü</string>
     <string name="high_score">Yeni Rekor</string>
+    <string name="game_find_operation">İşlemi Bul</string>
+    <string name="game_memory_matrix">Hafıza Matrisi</string>
 </resources>

@@ -11,6 +11,8 @@ import android.widget.GridView;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.MemorizeMatrixAdapter;
+import com.furkantektas.braingames.datatypes.GameCategory;
+import com.furkantektas.braingames.datatypes.GameType;
 
 public class GameMemoryMatrix extends AbstractGameActivity {
     private GridView mGridView;
@@ -25,6 +27,9 @@ public class GameMemoryMatrix extends AbstractGameActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setGameName(getResources().getString(R.string.game_memory_matrix));
+        setGameCategory(GameCategory.MEMORY);
+        setGameType(GameType.MEMORY_MATRIX);
         setContentView(R.layout.activity_game_memory_matrix);
         mGridView = (GridView) findViewById(R.id.grid_view);
         initAdapter(mSize);
@@ -49,30 +54,6 @@ public class GameMemoryMatrix extends AbstractGameActivity {
         });
         mGridView.setNumColumns(size);
         mGridView.setAdapter(mAdapter);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game_memory_matrix, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void nextLevel() {
