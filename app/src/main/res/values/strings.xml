@@ -34,6 +34,6 @@
     <string name="extraction">Extraction</string>
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
-
+    <string name="title_activity_game_memory_matrix">GameMemoryMatrix</string>
 
 </resources>

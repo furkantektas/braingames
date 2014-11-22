@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transition xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/memory_matrix_active"></item>
+    <item android:drawable="@drawable/memory_matrix_default"></item>
+</transition>

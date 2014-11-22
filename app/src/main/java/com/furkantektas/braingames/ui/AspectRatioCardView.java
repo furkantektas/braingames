@@ -36,7 +36,7 @@ public class AspectRatioCardView extends CardView {
                 0, 0);
 
         try {
-            mRatio = a.getFloat(R.styleable.AspectRatioCardView_ratio, 1.0f);
+            mRatio = a.getFloat(R.styleable.AspectRatioCardView_card_ratio, 1.0f);
         } finally {
             a.recycle();
         }
