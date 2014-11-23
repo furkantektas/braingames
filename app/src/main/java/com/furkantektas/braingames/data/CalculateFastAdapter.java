@@ -192,6 +192,7 @@ public class CalculateFastAdapter   extends BaseAdapter {
         vh.mResult2.setText(""+results.get(1));
         vh.mResult3.setText(""+results.get(2));
         vh.mResult4.setText(""+results.get(3));
+        System.err.println(c.mOperation+"-"+results.get(0)+"-"+results.get(1)+"-"+results.get(2)+"-"+results.get(3));
 
 
         if((i+1) == getCount()){

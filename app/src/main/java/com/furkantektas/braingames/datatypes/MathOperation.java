@@ -137,35 +137,22 @@ public class MathOperation {
 
         Random r = new Random();
         int randomStart = r.nextInt(4);
-
+        results.clear();
         switch (mOperation){
             case ADDITION:
             case EXTRACTION:{
-                for(int i=0;i<randomStart;++i){
-                    results.add(new Integer(result-i));
-                }
-                results.add(new Integer(result));
-                for(int i=randomStart+1;i<4;++i){
-                    results.add(new Integer(result+i));
-                }
+                for(int i=result-(4-randomStart)+1;i<=result+randomStart;++i)
+                    results.add(i);
+
+
             }break;
             case MULTIPLICATION:{
-                for(int i=0;i<randomStart;++i){
-                    results.add(new Integer(firstNumber*(secondNumber-i)));
-                }
-                results.add(new Integer(result));
-                for(int i=randomStart+1;i<4;++i){
-                    results.add(new Integer(firstNumber*(secondNumber+i)));
-                }
+                for(int i=secondNumber-(4-randomStart+1);i<=secondNumber+randomStart;++i)
+                    results.add(firstNumber*(i));
             }break;
             case DIVISION:{
-                for(int i=0;i<randomStart;++i){
-                    results.add(new Integer(firstNumber/(secondNumber-i)));
-                }
-                results.add(new Integer(result));
-                for(int i=randomStart+1;i<4;++i){
-                    results.add(new Integer(firstNumber/(secondNumber+i)));
-                }
+                for(int i=firstNumber-(4-randomStart)+1;i<=firstNumber+randomStart;++i)
+                    results.add(i/(secondNumber));
             }break;
         }
 
