@@ -2,6 +2,7 @@ package com.furkantektas.braingames.datatypes;
 
 import com.furkantektas.braingames.R;
 
+import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -34,8 +35,8 @@ public class MathOperation {
             {
                 do{
                     firstNumber = r.nextInt(10);
-                    secondNumber = r.nextInt(10);
-                }while(firstNumber == 0 || firstNumber == 1 || secondNumber == 0 || secondNumber == 1);
+                    secondNumber = r.nextInt(20);
+                }while(firstNumber == 0 || firstNumber == 1 || secondNumber <4);
 
             }
             break;
@@ -84,9 +85,11 @@ public class MathOperation {
         return (sOther.mOperation.resId == mOperation.resId);
     }
 
-    public boolean isTrue(Operation o){
+    public boolean isOperation(Operation o){
         return mOperation.getResId() == o.getResId();
     }
+    public boolean isResult(int r){return r==this.result;}
+
 
     public int getFirstNumber() {
         return firstNumber;
@@ -127,6 +130,34 @@ public class MathOperation {
         public int getResId() {
             return resId;
         }
+    }
+
+    public ArrayList<Integer> generateResults(){
+        ArrayList<Integer> results = new ArrayList<Integer>();
+
+        Random r = new Random();
+        int randomStart = r.nextInt(4);
+        results.clear();
+        switch (mOperation){
+            case ADDITION:
+            case EXTRACTION:{
+                for(int i=result-(4-randomStart)+1;i<=result+randomStart;++i)
+                    results.add(i);
+
+
+            }break;
+            case MULTIPLICATION:{
+                for(int i=secondNumber-(4-randomStart+1);i<=secondNumber+randomStart;++i)
+                    results.add(firstNumber*(i));
+            }break;
+            case DIVISION:{
+                for(int i=firstNumber-(4-randomStart)+1;i<=firstNumber+randomStart;++i)
+                    results.add(i/(secondNumber));
+            }break;
+        }
+
+
+        return results;
     }
 
     public static Operation generateOperation(int ind) {

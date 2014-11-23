@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.datatypes.MathOperation;
 import com.furkantektas.braingames.datatypes.Game;
-import com.furkantektas.braingames.datatypes.MathOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,7 +141,7 @@ public class FindOperationAdapter  extends BaseAdapter{
         vh.mNumber2.setText(""+c.getSecondNumber());
         vh.mResult.setText(""+c.getResult());
         if((i+1) == getCount()){
-            vh.mAdditionButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.Operation.ADDITION)? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     additionRightOnClickListener.onClick(view);
@@ -156,7 +155,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mExtractionButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mExtractionButton.setOnClickListener(c.isOperation(MathOperation.Operation.EXTRACTION)? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     extractionRightOnClickListener.onClick(view);
@@ -170,7 +169,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mMultiplicationButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mMultiplicationButton.setOnClickListener(c.isOperation(MathOperation.Operation.MULTIPLICATION)? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     multiplicationRightOnClickListener.onClick(view);
@@ -184,7 +183,7 @@ public class FindOperationAdapter  extends BaseAdapter{
                 }
             });
 
-            vh.mDivisionButton.setOnClickListener(c.isTrue(MathOperation.generateOperation(0))? new View.OnClickListener() {
+            vh.mDivisionButton.setOnClickListener(c.isOperation(MathOperation.Operation.DIVISION)? new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     divisionWorngOnClickListener.onClick(view);
@@ -199,10 +198,10 @@ public class FindOperationAdapter  extends BaseAdapter{
             });
         }
         else{
-            vh.mAdditionButton.setOnClickListener(c.isTrue(MathOperation.Operation.ADDITION)?additionRightOnClickListener:additionWrongOnClickListener);
-            vh.mExtractionButton.setOnClickListener(c.isTrue(MathOperation.Operation.EXTRACTION)?extractionRightOnClickListener:extractionWrongOnClickListener);
-            vh.mMultiplicationButton.setOnClickListener(c.isTrue(MathOperation.Operation.MULTIPLICATION)?multiplicationRightOnClickListener:multiplicationWrongOnClickListener);
-            vh.mDivisionButton.setOnClickListener(c.isTrue(MathOperation.Operation.DIVISION)?divisionRightOnClickListener:divisionWorngOnClickListener);
+            vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.Operation.ADDITION)?additionRightOnClickListener:additionWrongOnClickListener);
+            vh.mExtractionButton.setOnClickListener(c.isOperation(MathOperation.Operation.EXTRACTION)?extractionRightOnClickListener:extractionWrongOnClickListener);
+            vh.mMultiplicationButton.setOnClickListener(c.isOperation(MathOperation.Operation.MULTIPLICATION)?multiplicationRightOnClickListener:multiplicationWrongOnClickListener);
+            vh.mDivisionButton.setOnClickListener(c.isOperation(MathOperation.Operation.DIVISION)?divisionRightOnClickListener:divisionWorngOnClickListener);
         }
 
 
@@ -251,6 +250,7 @@ public class FindOperationAdapter  extends BaseAdapter{
             mDivisionButton = (Button) v.findViewById(R.id.division);
         }
     }
+
     public int getAnsweredQuestionCount() {
         return mAnsweredQuestionCount;
     }

@@ -6,6 +6,7 @@ import android.widget.AdapterViewFlipper;
 import android.widget.Toast;
 
 import com.furkantektas.braingames.R;
+import com.furkantektas.braingames.data.CalculateFastAdapter;
 import com.furkantektas.braingames.data.FindOperationAdapter;
 import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameType;
@@ -13,38 +14,38 @@ import com.furkantektas.braingames.datatypes.GameType;
 /**
  * Created by Sinan NAR on 21/11/14.
  */
-public class GameFindOperationActivity extends AbstractCountDownTimerGameActivity{
+public class GameCalculateFastActivity extends AbstractCountDownTimerGameActivity {
     private AdapterViewFlipper mAdapterFlipper;
-    private FindOperationAdapter mAdapter;
+    private CalculateFastAdapter mAdapter;
 
     private static final int QUESTION_NUM = 25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setGameName(getApplicationContext().getResources().getString(R.string.game_find_operation));
+        setGameName(getApplicationContext().getResources().getString(R.string.game_calculate_fast));
         setGameCategory(GameCategory.PROBLEM_SOLVING);
-        setGameType(GameType.FIND_OPERATION);
+        setGameType(GameType.CALCULATE_FAST);
 
-        setContentView(R.layout.activity_game_find_operation);
+        setContentView(R.layout.activity_game_calculate_fast);
 
         mAdapterFlipper = (AdapterViewFlipper)findViewById(R.id.flipper);
 
-        mAdapter = new FindOperationAdapter(QUESTION_NUM, this,
-            new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAdapterFlipper.showNext();
-                positiveSound();
-            }
-        },
-            new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAdapterFlipper.showNext();
-                negativeSound();
-            }
-        });
+        mAdapter = new CalculateFastAdapter(QUESTION_NUM, this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mAdapterFlipper.showNext();
+                        positiveSound();
+                    }
+                },
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mAdapterFlipper.showNext();
+                        negativeSound();
+                    }
+                });
 
         mAdapterFlipper.setAdapter(mAdapter);
         mAdapterFlipper.setVisibility(View.INVISIBLE);
@@ -58,7 +59,7 @@ public class GameFindOperationActivity extends AbstractCountDownTimerGameActivit
 
     @Override
     public void finishGame() {
-        Toast.makeText(getApplicationContext(),"Correct Results: "+mAdapter.getCorrectResults(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Correct Results: " + mAdapter.getCorrectResults(), Toast.LENGTH_LONG).show();
         super.finishGame();
     }
 

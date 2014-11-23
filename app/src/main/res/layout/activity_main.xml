@@ -48,9 +48,18 @@
         android:padding="10dp"
         android:textColor="@color/white"
         android:layout_margin="20dp"
+<<<<<<< HEAD
         android:text="  Start Memory Matrix "
         android:id="@+id/button_memory_matrix"
         android:layout_centerVertical="true"
         android:background="@color/brown"
         android:layout_centerHorizontal="true" />
+=======
+        android:text="  Start Calculate Fast "
+        android:id="@+id/button_calculate_fast"
+        android:layout_centerVertical="true"
+        android:background="@color/brown"
+        android:layout_centerHorizontal="true" />
+
+>>>>>>> CalculateFast
 </LinearLayout>
