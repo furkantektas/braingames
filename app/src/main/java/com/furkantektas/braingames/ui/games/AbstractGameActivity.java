@@ -133,9 +133,9 @@ public abstract class AbstractGameActivity extends ActionBarActivity implements 
                 Class cl = null;
                 if(data != null) {
                     int action = (data.getExtras().getInt(ARG_ACTION));
-                    if(action == finalActions.RESTART.ind)
+                    if(action == finalActions.RETURN_TO_MAIN_MENU.ind)//it was .ordinal
                         cl = MainActivity.class;
-                    else if(action == finalActions.RETURN_TO_MAIN_MENU.ordinal())
+                    else if(action == finalActions.RESTART.ind)
                         cl = this.getClass();
                     if(cl != null)
                         startActivity(new Intent(getApplicationContext(), cl));
