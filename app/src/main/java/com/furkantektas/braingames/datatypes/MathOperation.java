@@ -141,18 +141,19 @@ public class MathOperation {
         switch (mOperation){
             case ADDITION:
             case EXTRACTION:{
-                for(int i=result-(4-randomStart)+1;i<=result+randomStart;++i)
-                    results.add(i);
-
-
+                for(int i=0;i<4;++i){
+                    results.add(result-(randomStart-i));
+                }
             }break;
             case MULTIPLICATION:{
-                for(int i=secondNumber-(4-randomStart+1);i<=secondNumber+randomStart;++i)
-                    results.add(firstNumber*(i));
+                for(int i=0;i<4;++i){
+                    results.add(firstNumber*(secondNumber-(randomStart-i)));
+                }
             }break;
             case DIVISION:{
-                for(int i=firstNumber-(4-randomStart)+1;i<=firstNumber+randomStart;++i)
-                    results.add(i/(secondNumber));
+                for(int i=0;i<4;++i){
+                    results.add(firstNumber/(secondNumber-(randomStart-i)));
+                }
             }break;
         }
 
