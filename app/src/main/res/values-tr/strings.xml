@@ -24,4 +24,5 @@
     <string name="high_score">Yeni Rekor</string>
     <string name="game_find_operation">İşlemi Bul</string>
     <string name="game_memory_matrix">Hafıza Matrisi</string>
+    <string name="game_calculate_fast">Hızlı Hesapla</string>
 </resources>
