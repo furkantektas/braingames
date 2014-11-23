@@ -166,6 +166,7 @@ public class CalculateFastAdapter   extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         CalculateFastViewHolder vh;
+        mAnsweredQuestionCount++;
 
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
