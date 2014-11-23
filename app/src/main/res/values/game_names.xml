@@ -3,9 +3,9 @@
     <string name="game_color_match">Color Match</string>
     <string name="game_shape_match">Shape Match</string>
     <string name="game_find_operation">Find Operation</string>
-<<<<<<< HEAD
+
     <string name="game_memory_matrix">Memory Matrix</string>
-=======
+
     <string name="game_calculate_fast">Calculate Fast</string>
->>>>>>> CalculateFast
+
 </resources>

@@ -10,11 +10,7 @@ import android.widget.Button;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
-<<<<<<< HEAD
-import com.furkantektas.braingames.datatypes.MemorizeMatrix;
-=======
 import com.furkantektas.braingames.ui.games.GameCalculateFastActivity;
->>>>>>> CalculateFast
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameMemoryMatrix;
