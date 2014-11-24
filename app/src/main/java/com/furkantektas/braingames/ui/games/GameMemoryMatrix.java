@@ -1,11 +1,18 @@
 package com.furkantektas.braingames.ui.games;
 
+import android.animation.Animator;
+import android.animation.LayoutTransition;
+import android.animation.ObjectAnimator;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Transition;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.GridView;
 

@@ -1,10 +1,10 @@
 package com.furkantektas.braingames.ui.games;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
@@ -24,7 +24,7 @@ import java.util.Date;
  * method of Game interface.
  * Created by Furkan Tektas on 11/14/14.
  */
-public abstract class AbstractGameActivity extends ActionBarActivity implements Game {
+public abstract class AbstractGameActivity extends Activity implements Game {
     private boolean mShowTutorial;
     private static final String SHARED_PREF_NAME = "GAME_PREFERENCES";
     private GameStat mGameStat = new GameStat();

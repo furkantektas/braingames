@@ -136,8 +136,6 @@ public class CalculateFastAdapter   extends BaseAdapter {
     }
 
     public static class CalculateFastViewHolder {
-        public TextView mNumber1;
-        public TextView mNumber2;
         public TextView mOperation;
         public Button mResult1;
         public Button mResult2;
@@ -145,8 +143,6 @@ public class CalculateFastAdapter   extends BaseAdapter {
         public Button mResult4;
 
         public CalculateFastViewHolder(View v) {
-            mNumber1 = (TextView)v.findViewById(R.id.number1);
-            mNumber2 = (TextView)v.findViewById(R.id.number2);
             mOperation = (TextView)v.findViewById(R.id.operation);
             mResult1 = (Button) v.findViewById(R.id.result1);
             mResult2 = (Button) v.findViewById(R.id.result2);
@@ -179,14 +175,16 @@ public class CalculateFastAdapter   extends BaseAdapter {
         }
         System.out.println("i="+i);
         final MathOperation c = mDataSet.get(i);
-        vh.mNumber1.setText(""+c.getFirstNumber());
-        vh.mNumber2.setText(""+c.getSecondNumber());
+        StringBuilder operation = new StringBuilder().append(c.getFirstNumber()).append(" ");
+
         switch (c.mOperation){
-            case ADDITION:vh.mOperation.setText("+");break;
-            case EXTRACTION:vh.mOperation.setText("-");break;
-            case MULTIPLICATION:vh.mOperation.setText("*");break;
-            case DIVISION:vh.mOperation.setText("/");break;
+            case ADDITION:operation.append("+");break;
+            case EXTRACTION:operation.append("-");break;
+            case MULTIPLICATION:operation.append("*");break;
+            case DIVISION:operation.append("/");break;
         }
+        operation.append(" ").append(c.getSecondNumber()).append(" = ?");
+        vh.mOperation.setText(operation.toString());
 
         ArrayList<Integer> results = c.generateResults();
         vh.mResult1.setText(""+results.get(0));

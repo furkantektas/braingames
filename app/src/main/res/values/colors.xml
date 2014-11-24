@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="card_bg">#E0E0E0</color>
+    <color name="zebra_gray">#EEEEEE</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="orange_dark">#E65100</color>
 </resources>
