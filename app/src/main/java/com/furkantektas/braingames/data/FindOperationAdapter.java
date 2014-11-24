@@ -137,9 +137,8 @@ public class FindOperationAdapter  extends BaseAdapter{
         System.out.println("i="+i);
 
         final MathOperation c = mDataSet.get(i);
-        vh.mNumber1.setText(""+c.getFirstNumber());
-        vh.mNumber2.setText(""+c.getSecondNumber());
-        vh.mResult.setText(""+c.getResult());
+        vh.mOperation.setText(c.getFirstNumber()+" ◯ "+c.getSecondNumber()+" = " + c.getResult());
+//        vh.mTextView.setText();
         if((i+1) == getCount()){
             vh.mAdditionButton.setOnClickListener(c.isOperation(MathOperation.Operation.ADDITION)? new View.OnClickListener() {
                 @Override
@@ -232,18 +231,14 @@ public class FindOperationAdapter  extends BaseAdapter{
     }
 
     public static class FindOperationViewHolder {
-        public TextView mNumber1;
-        public TextView mNumber2;
-        public TextView mResult;
+        public TextView mOperation;
         public Button mAdditionButton;
         public Button mExtractionButton;
         public Button mMultiplicationButton;
         public Button mDivisionButton;
 
         public FindOperationViewHolder(View v) {
-            mNumber1 = (TextView)v.findViewById(R.id.number1);
-            mNumber2 = (TextView)v.findViewById(R.id.number2);
-            mResult = (TextView)v.findViewById(R.id.result);
+            mOperation = (TextView)v.findViewById(R.id.operation);
             mAdditionButton = (Button) v.findViewById(R.id.addition);
             mExtractionButton = (Button) v.findViewById(R.id.extraction);
             mMultiplicationButton = (Button) v.findViewById(R.id.multiplication);

@@ -13,76 +13,23 @@
         android:layout_height="fill_parent"
         android:layout_margin="20dp"
         card_view:cardCornerRadius="0dp"
-        card_view:card_ratio="0.75">
+        card_view:card_ratio="1.25">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:baselineAligned="false"
             android:weightSum="5">
-            <TextView
-                android:id="@+id/number1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:background="@color/blue"
-                android:textColor="@color/white"
-                android:text="@string/orange"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="32sp"
-                android:gravity="center"
-                android:singleLine="true" />
             <TextView
                 android:id="@+id/operation"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:background="@color/blue"
+                android:layout_weight="3"
+                android:background="@color/green"
                 android:textColor="@color/white"
-                android:text="▢"
+                android:text="16 ◯ 16 = 32"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textSize="32sp"
-                android:gravity="center"
-                android:singleLine="true" />
-            <TextView
-                android:id="@+id/number2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:background="@color/blue"
-                android:textColor="@color/white"
-                android:text="@string/orange"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="32sp"
-                android:gravity="center"
-                android:singleLine="true" />
-            <TextView
-                android:id="@+id/equal"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:background="@color/blue"
-                android:textColor="@color/white"
-                android:text="="
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="32sp"
-                android:gravity="center"
-                android:singleLine="true" />
-            <TextView
-                android:id="@+id/result"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:background="@color/blue"
-                android:textColor="@color/white"
-                android:text="@string/orange"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="32sp"
+                android:textSize="42sp"
                 android:gravity="center"
                 android:singleLine="true" />
 
@@ -91,8 +38,7 @@
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_weight="1"
-                android:baselineAligned="false">
+                android:layout_weight="2">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -101,31 +47,43 @@
                     android:textSize="70dp"
                     android:id="@+id/addition"
                     android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textAlignment="center"
                     style="@style/Widget.AppCompat.ActionButton" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:text="-"
+                    android:text="−"
+                    android:textColor="@color/blue"
+                    android:singleLine="true"
                     android:textSize="70dp"
                     android:id="@+id/extraction"
                     android:layout_weight="1"
+                    android:textAlignment="center"
                     style="@style/Widget.AppCompat.ActionButton" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:text="x"
+                    android:text="×"
+                    android:textColor="@color/blue"
+                    android:singleLine="true"
                     android:textSize="70dp"
                     android:id="@+id/multiplication"
                     android:layout_weight="1"
+                    android:textAlignment="center"
                     style="@style/Widget.AppCompat.ActionButton" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:text="/"
+                    android:text="÷"
+                    android:textColor="@color/blue"
+                    android:singleLine="true"
                     android:textSize="70dp"
                     android:id="@+id/division"
                     android:layout_weight="1"
-                    style="@style/Widget.AppCompat.ActionButton" />
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:textAlignment="center" />
 
 
             </LinearLayout>
