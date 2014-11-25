@@ -81,7 +81,8 @@
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameResultActivity"
             android:label="@string/title_activity_game_result"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.ui.MainActivity" />
@@ -89,7 +90,8 @@
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameMemoryMatrix"
             android:label="@string/title_activity_game_memory_matrix"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.ui.MainActivity" />

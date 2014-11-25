@@ -1,12 +1,15 @@
 package com.furkantektas.braingames.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
@@ -19,16 +22,24 @@ import com.furkantektas.braingames.utils.GameStatManager;
 
 
 public class MainActivity extends Activity {
+    public static final String PREF_KEY = "prefs";
+    public static final String VOLUME_PREF_KEY = "volume";
+
     private static SFX mSFX;
     private static GameStatManager mGameStatManager;
+    private static boolean mIsVolumeOn = true;
+    private static boolean mIsInitialized = false;
+
+    private SharedPreferences prefs;
+    private ImageButton toggle_volume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setGameStatManager(new GameStatManager(getApplicationContext()));
-        setSFX(new SFX(getApplicationContext()));
+        if(!mIsInitialized)
+            init();
 
         Button b = (Button) findViewById(R.id.button_color_match);
         b.setOnClickListener(new View.OnClickListener() {
@@ -113,5 +124,47 @@ public class MainActivity extends Activity {
 
     public static void setGameStatManager(GameStatManager mGameStatManager) {
         MainActivity.mGameStatManager = mGameStatManager;
+    }
+
+    private void init() {
+        System.out.println("Initializing main");
+        mIsInitialized = true;
+        setSFX(new SFX(getApplicationContext()));
+        setGameStatManager(new GameStatManager(getApplicationContext()));
+        prefs = getApplicationContext().getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+        initVolumePref();
+        toggle_volume = (ImageButton) findViewById(R.id.toggle_volume);
+        updateVolumeToggle();
+
+        toggle_volume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mIsVolumeOn = !isVolumeOn();
+                setVolumePref(isVolumeOn());
+                updateVolumeToggle();
+
+                if(mIsVolumeOn)
+                    mSFX.pop(); // TODO: sometimes pop doesn't play
+            }
+        });
+    }
+
+    private void updateVolumeToggle() {
+        toggle_volume.setImageResource(isVolumeOn() ? R.drawable.ic_volume_up : R.drawable.ic_volume_mute);
+
+    }
+
+    private void setVolumePref(boolean currentStatus) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(VOLUME_PREF_KEY, isVolumeOn()).commit();
+    }
+
+    private void initVolumePref() {
+        mIsVolumeOn = prefs.getBoolean(VOLUME_PREF_KEY,true);
+    }
+
+
+    public static boolean isVolumeOn() {
+        return mIsVolumeOn;
     }
 }
