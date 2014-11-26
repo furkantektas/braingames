@@ -10,6 +10,11 @@ import java.util.ArrayList;
 /**
  * Created by Sinan NAR on 21/11/14.
  */
+
+/*
+ * TODO: need a function that print like "5+3" or "15/3"
+ * TODO: need a function that print like "5+3=8" or "15/3=5"
+ */
 public class MathOperation {
 
     public Operation mOperation;

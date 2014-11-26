@@ -124,6 +124,9 @@ public class CompareFastAdapter    extends BaseAdapter {
         };
     }
     @Override
+    /*
+    * TODO: 148-167 should have written more functional
+    * */
     public View getView(int i, View view, ViewGroup viewGroup) {
         CompareFastViewHolder vh;
         mAnsweredQuestionCount++;
