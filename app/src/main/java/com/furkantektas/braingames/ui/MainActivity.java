@@ -42,8 +42,8 @@ public class MainActivity extends Activity {
         if(!mIsInitialized)
             init();
 
-        Button b = (Button) findViewById(R.id.button_color_match);
-        b.setOnClickListener(new View.OnClickListener() {
+        Button color_match = (Button) findViewById(R.id.button_color_match);
+        color_match.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),GameColorMatchActivity.class);
@@ -52,8 +52,8 @@ public class MainActivity extends Activity {
         });
 
 
-        Button b2 = (Button) findViewById(R.id.button_shape_match);
-        b2.setOnClickListener(new View.OnClickListener() {
+        Button shape_match = (Button) findViewById(R.id.button_shape_match);
+        shape_match.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),GameShapeMatchActivity.class);
@@ -79,8 +79,8 @@ public class MainActivity extends Activity {
             }
         });
 
-        Button b5 = (Button) findViewById(R.id.button_memory_matrix);
-        b5.setOnClickListener(new View.OnClickListener() {
+        Button memory_matrix = (Button) findViewById(R.id.button_memory_matrix);
+        memory_matrix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),GameMemoryMatrix.class);
