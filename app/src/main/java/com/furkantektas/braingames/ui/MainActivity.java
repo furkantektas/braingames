@@ -15,6 +15,7 @@ import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
 import com.furkantektas.braingames.ui.games.GameCalculateFastActivity;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
+import com.furkantektas.braingames.ui.games.GameCompareFastActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameMemoryMatrix;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
@@ -83,6 +84,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),GameMemoryMatrix.class);
+                startActivity(i);
+            }
+        });
+
+        Button compare_fast = (Button) findViewById(R.id.button_compare_fast);
+        compare_fast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),GameCompareFastActivity.class);
                 startActivity(i);
             }
         });

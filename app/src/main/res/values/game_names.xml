@@ -7,5 +7,6 @@
     <string name="game_memory_matrix">Memory Matrix</string>
 
     <string name="game_calculate_fast">Calculate Fast</string>
+    <string name="game_compare_fast">Compare Fast</string>
 
 </resources>
