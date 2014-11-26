@@ -23,7 +23,7 @@
             <TextView
                 android:id="@+id/question"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="240dp"
                 android:layout_weight="3"
                 android:background="@color/blue"
                 android:textColor="@color/white"
@@ -35,8 +35,8 @@
                 android:singleLine="true" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_weight="9"
                 android:baselineAligned="false">
@@ -45,17 +45,19 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="TRUE"
-                    android:textSize="35dp"
+                    android:textSize="20dp"
                     android:id="@+id/bTrue"
                     android:layout_weight="0.5"
+                    android:drawableLeft="@drawable/ic_action_done"
                     style="@style/Widget.AppCompat.ActionButton" />
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="35dp"
+                    android:textSize="20dp"
                     android:text="FALSE"
                     android:id="@+id/bFalse"
                     android:layout_weight="0.5"
+                    android:drawableLeft="@drawable/ic_action_cancel"
                     style="@style/Widget.AppCompat.ActionButton" />
 
 
