@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="0dp"
+    android:layout_margin="0dp">
+    <com.furkantektas.braingames.ui.AspectRatioCardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/color_match_card"
+        android:layout_centerInParent="true"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="20dp"
+        card_view:cardCornerRadius="0dp"
+        card_view:card_ratio="0.75">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:baselineAligned="false"
+            android:weightSum="12">
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/blue"
+                android:textColor="@color/white"
+                android:text="15 + 3 = 18"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="42sp"
+                android:gravity="center"
+                android:singleLine="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="9"
+                android:baselineAligned="false">
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TRUE"
+                    android:textSize="35dp"
+                    android:id="@+id/bTrue"
+                    android:layout_weight="0.5"
+                    style="@style/Widget.AppCompat.ActionButton" />
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="35dp"
+                    android:text="FALSE"
+                    android:id="@+id/bFalse"
+                    android:layout_weight="0.5"
+                    style="@style/Widget.AppCompat.ActionButton" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.furkantektas.braingames.ui.AspectRatioCardView>
+</RelativeLayout>

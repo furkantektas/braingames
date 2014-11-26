@@ -39,6 +39,16 @@
                 android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
+            android:name="com.furkantektas.braingames.ui.games.GameCompareFastActivity"
+            android:configChanges="orientation"
+            android:label="@string/game_color_match"
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.furkantektas.braingames.MainActivity" />
+        </activity>
+        <activity
             android:name="com.furkantektas.braingames.ui.games.GameFindOperationActivity"
             android:configChanges="orientation"
             android:label="@string/game_find_operation"

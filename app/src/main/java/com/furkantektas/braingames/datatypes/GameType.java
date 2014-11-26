@@ -8,5 +8,6 @@ public enum GameType {
     COLOR_MATCH,
     FIND_OPERATION,
     MEMORY_MATRIX,
-    CALCULATE_FAST
+    CALCULATE_FAST,
+    COMPARE_FAST
 }
