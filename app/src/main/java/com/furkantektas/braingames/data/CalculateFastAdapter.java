@@ -175,16 +175,7 @@ public class CalculateFastAdapter   extends BaseAdapter {
         }
         System.out.println("i="+i);
         final MathOperation c = mDataSet.get(i);
-        StringBuilder operation = new StringBuilder().append(c.getFirstNumber()).append(" ");
-
-        switch (c.mOperation){
-            case ADDITION:operation.append("+");break;
-            case EXTRACTION:operation.append("-");break;
-            case MULTIPLICATION:operation.append("*");break;
-            case DIVISION:operation.append("/");break;
-        }
-        operation.append(" ").append(c.getSecondNumber()).append(" = ?");
-        vh.mOperation.setText(operation.toString());
+        vh.mOperation.setText(c.getQuesstion().append(" = ?"));
 
         ArrayList<Integer> results = c.generateResults();
         vh.mResult1.setText(""+results.get(0));

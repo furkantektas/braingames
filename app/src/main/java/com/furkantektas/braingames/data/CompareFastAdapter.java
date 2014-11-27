@@ -144,28 +144,7 @@ public class CompareFastAdapter    extends BaseAdapter {
         System.out.println("i="+i);
 
         final ComparisonOperation c = mDataSet.get(i);
-
-        StringBuilder operation = new StringBuilder().append(c.firstOperation.getFirstNumber()).append("");
-        switch (c.firstOperation.mOperation){
-            case ADDITION:operation.append("+");break;
-            case EXTRACTION:operation.append("-");break;
-            case MULTIPLICATION:operation.append("*");break;
-            case DIVISION:operation.append("/");break;
-        }
-        operation.append(c.firstOperation.getSecondNumber());
-        switch (c.mComparison){
-            case LOWERTHEN:operation.append(" < ");break;
-            case HIGHERTHEN:operation.append(" > ");break;
-        }
-        operation.append(c.secondOperation.getFirstNumber());
-        switch (c.secondOperation.mOperation){
-            case ADDITION:operation.append("+");break;
-            case EXTRACTION:operation.append("-");break;
-            case MULTIPLICATION:operation.append("*");break;
-            case DIVISION:operation.append("/");break;
-        }
-        operation.append(c.secondOperation.getSecondNumber());
-        vh.question.setText(operation);
+        vh.question.setText(c.getQuestion());
 
         if((i+1) == getCount()){
             vh.bTrue.setOnClickListener(c.isComparisonCorrect(true)?

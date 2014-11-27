@@ -49,6 +49,16 @@ public class ComparisonOperation {
 
     }
 
+    public StringBuilder getQuestion(){
+        StringBuilder operation = firstOperation.getQuesstion();
+        switch (mComparison){
+            case LOWERTHEN:operation.append(" < ");break;
+            case HIGHERTHEN:operation.append(" > ");break;
+        }
+        operation.append(secondOperation.getQuesstion());
+        return operation;
+    }
+
 
     public static enum Comparison {
         LOWERTHEN(R.string.lowerthen),

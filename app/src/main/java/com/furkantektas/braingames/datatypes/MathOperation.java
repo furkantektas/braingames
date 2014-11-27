@@ -11,10 +11,6 @@ import java.util.ArrayList;
  * Created by Sinan NAR on 21/11/14.
  */
 
-/*
- * TODO: need a function that print like "5+3" or "15/3"
- * TODO: need a function that print like "5+3=8" or "15/3=5"
- */
 public class MathOperation {
 
     public Operation mOperation;
@@ -50,10 +46,14 @@ public class MathOperation {
                 ArrayList<Integer> primeNumbers;
                 do{
                     do{
-                        firstNumber = r.nextInt(100);
-                    }while(firstNumber<50);
-                    primeNumbers = findPrimeFactors(firstNumber);
-                    secondNumber = primeNumbers.get(primeNumbers.size()-1).intValue();
+                        do{
+                            firstNumber = r.nextInt(100);
+                        }while(firstNumber<50);
+                        primeNumbers = findPrimeFactors(firstNumber);
+                        secondNumber = primeNumbers.get(primeNumbers.size()-1).intValue();
+                    }while(secondNumber == 0);
+
+
                 }while(firstNumber == 0 || firstNumber == 1 || primeNumbers.size()<2);
 
             }
@@ -69,7 +69,7 @@ public class MathOperation {
 
     }
 
-        public MathOperation(Operation operation,int firstNumber,int secondNumber) {
+    public MathOperation(Operation operation,int firstNumber,int secondNumber) {
         this.mOperation = operation;
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
@@ -80,6 +80,43 @@ public class MathOperation {
             case DIVISION:{result = firstNumber / secondNumber;}break;
         }
     }
+
+    public StringBuilder getQuesstion(){
+        StringBuilder returnValue = new StringBuilder().append(firstNumber);
+        switch (mOperation){
+            case ADDITION:returnValue.append("+");break;
+            case EXTRACTION:returnValue.append("-");break;
+            case MULTIPLICATION:returnValue.append("*");break;
+            case DIVISION:returnValue.append("/");break;
+        }
+        returnValue.append(secondNumber);
+        return returnValue;
+    }
+
+    public StringBuilder getEquasion(){
+        StringBuilder returnValue = new StringBuilder().append(firstNumber);
+        switch (mOperation){
+            case ADDITION:returnValue.append("+");break;
+            case EXTRACTION:returnValue.append("-");break;
+            case MULTIPLICATION:returnValue.append("*");break;
+            case DIVISION:returnValue.append("/");break;
+        }
+        returnValue.append(secondNumber).append("=").append(result);
+        return returnValue;
+    }
+
+    public StringBuilder getFakeEquasion(int fakeResult){
+        StringBuilder returnValue = new StringBuilder().append(firstNumber);
+        switch (mOperation){
+            case ADDITION:returnValue.append("+");break;
+            case EXTRACTION:returnValue.append("-");break;
+            case MULTIPLICATION:returnValue.append("*");break;
+            case DIVISION:returnValue.append("/");break;
+        }
+        returnValue.append(secondNumber).append("=").append(fakeResult);
+        return returnValue;
+    }
+
 
     @Override
     public boolean equals(Object o) {
