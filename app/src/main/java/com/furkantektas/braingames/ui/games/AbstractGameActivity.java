@@ -2,9 +2,12 @@ package com.furkantektas.braingames.ui.games;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
@@ -50,9 +53,22 @@ public abstract class AbstractGameActivity extends Activity implements Game {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSFX = MainActivity.getSFX();
-        mGameStatManager = MainActivity.getGameStatManager();
+        init();
         setPreferences(getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, android.content.Context.MODE_PRIVATE));
+    }
+
+
+    private void init() {
+        /* Getting SFX from MainActivity */
+        if(mSFX == null)
+            mSFX = MainActivity.getSFX();
+
+        /* If SFX is still null (sometimes it is) create a new SFX */
+        if(mSFX == null)
+            mSFX = new SFX(getApplicationContext());
+
+        if(mGameStatManager == null)
+            mGameStatManager = new GameStatManager(getApplicationContext());
     }
 
     @Override

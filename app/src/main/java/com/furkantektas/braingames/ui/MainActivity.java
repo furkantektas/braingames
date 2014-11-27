@@ -1,9 +1,7 @@
 package com.furkantektas.braingames.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,28 +17,19 @@ import com.furkantektas.braingames.ui.games.GameCompareFastActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameMemoryMatrix;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
-import com.furkantektas.braingames.utils.GameStatManager;
 
 
 public class MainActivity extends Activity {
     public static final String PREF_KEY = "prefs";
-    public static final String VOLUME_PREF_KEY = "volume";
-
     private static SFX mSFX;
-    private static GameStatManager mGameStatManager;
-    private static boolean mIsVolumeOn = true;
-    private static boolean mIsInitialized = false;
-
-    private SharedPreferences prefs;
-    private ImageButton toggle_volume;
+    private ImageButton mToggleVolume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!mIsInitialized)
-            init();
+        init();
 
         Button color_match = (Button) findViewById(R.id.button_color_match);
         color_match.setOnClickListener(new View.OnClickListener() {
@@ -127,54 +116,27 @@ public class MainActivity extends Activity {
         MainActivity.mSFX = mSFX;
     }
 
-
-    public static GameStatManager getGameStatManager() {
-        return mGameStatManager;
-    }
-
-    public static void setGameStatManager(GameStatManager mGameStatManager) {
-        MainActivity.mGameStatManager = mGameStatManager;
-    }
-
     private void init() {
-        System.out.println("Initializing main");
-        mIsInitialized = true;
-        setSFX(new SFX(getApplicationContext()));
-        setGameStatManager(new GameStatManager(getApplicationContext()));
-        prefs = getApplicationContext().getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        initVolumePref();
-        toggle_volume = (ImageButton) findViewById(R.id.toggle_volume);
-        updateVolumeToggle();
+        if(mSFX == null)
+            mSFX = new SFX(getApplicationContext());
+        mToggleVolume = (ImageButton) findViewById(R.id.toggle_volume);
 
-        toggle_volume.setOnClickListener(new View.OnClickListener() {
+        mToggleVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mIsVolumeOn = !isVolumeOn();
-                setVolumePref(isVolumeOn());
+                mSFX.setVolumePref(!mSFX.isVolumeOn());
                 updateVolumeToggle();
 
-                if(mIsVolumeOn)
+                if (mSFX.isVolumeOn())
                     mSFX.pop(); // TODO: sometimes pop doesn't play
             }
         });
+
+        updateVolumeToggle();
     }
 
     private void updateVolumeToggle() {
-        toggle_volume.setImageResource(isVolumeOn() ? R.drawable.ic_volume_up : R.drawable.ic_volume_mute);
+        mToggleVolume.setImageResource(mSFX.isVolumeOn() ? R.drawable.ic_volume_up : R.drawable.ic_volume_mute);
 
-    }
-
-    private void setVolumePref(boolean currentStatus) {
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(VOLUME_PREF_KEY, isVolumeOn()).commit();
-    }
-
-    private void initVolumePref() {
-        mIsVolumeOn = prefs.getBoolean(VOLUME_PREF_KEY,true);
-    }
-
-
-    public static boolean isVolumeOn() {
-        return mIsVolumeOn;
     }
 }
