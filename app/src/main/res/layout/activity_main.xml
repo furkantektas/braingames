@@ -91,15 +91,22 @@
             android:background="@color/orange"
             android:layout_gravity="fill_horizontal"/>
 
-        <Button
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Compare Fast"
-            android:id="@+id/button_compare_fast"
-            android:background="@color/orange"
-            android:layout_gravity="fill_horizontal"/>
+            <Button
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Compare Fast"
+                android:id="@+id/button_compare_fast"
+                android:background="@color/orange"
+                android:layout_gravity="fill_horizontal"/>
+            <Button
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Stat Graph"
+                android:id="@+id/button_graph"
+                android:background="@color/red"
+                android:layout_gravity="fill_horizontal"/>
 
 
-    </GridLayout>
+        </GridLayout>
     </LinearLayout>
 </RelativeLayout>

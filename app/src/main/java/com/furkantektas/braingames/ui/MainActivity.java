@@ -86,6 +86,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button graph = (Button) findViewById(R.id.button_graph);
+        graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),GraphActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
 
