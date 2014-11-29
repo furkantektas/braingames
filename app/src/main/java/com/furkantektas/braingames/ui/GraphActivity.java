@@ -40,7 +40,7 @@ public class GraphActivity extends Activity{
                 this // context
                 , "" // heading
         );
-        LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout1);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.graph_layout);
         graphView.addSeries(exampleSeries);
         layout.addView(graphView);
     }
