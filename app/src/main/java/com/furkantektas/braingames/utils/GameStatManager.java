@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.furkantektas.braingames.datatypes.Game;
 import com.furkantektas.braingames.datatypes.GameCategory;
 import com.furkantektas.braingames.datatypes.GameStatInt;
+import com.furkantektas.braingames.datatypes.GameType;
 import com.furkantektas.braingames.datatypes.Stat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,7 +35,7 @@ public class GameStatManager {
      * @return true if game score high score. Otherwise, returns false
      */
     public boolean saveGame(GameStatInt g) {
-        SharedPreferences prefs = mContext.getSharedPreferences(g.getGameName(), Context.MODE_PRIVATE);
+        SharedPreferences prefs = mContext.getSharedPreferences(g.getGameType().toString(), Context.MODE_PRIVATE);
         if(prefs == null)
             return false;
         Stat stat = readStats(prefs);
@@ -56,7 +57,11 @@ public class GameStatManager {
     }
 
     private Stat readStats(GameStatInt g) {
-        SharedPreferences prefs = mContext.getSharedPreferences(g.getGameName(), Context.MODE_PRIVATE);
+        return readStats(g.getGameType());
+    }
+
+    private Stat readStats(GameType g) {
+        SharedPreferences prefs = mContext.getSharedPreferences(g.toString(), Context.MODE_PRIVATE);
         return readStats(prefs);
     }
 
