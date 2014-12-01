@@ -17,6 +17,7 @@ import com.furkantektas.braingames.ui.games.GameCompareFastActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameMemoryMatrix;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
+import com.furkantektas.braingames.ui.games.StatActivity;
 
 
 public class MainActivity extends Activity {
@@ -82,6 +83,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),GameCompareFastActivity.class);
+                startActivity(i);
+            }
+        });
+
+        ImageButton stats = (ImageButton) findViewById(R.id.stats);
+        stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), StatActivity.class);
                 startActivity(i);
             }
         });

@@ -13,7 +13,6 @@
     <string name="main_menu_button">Main Menu</string>
     <string name="title_activity_game_memory_matrix">GameMemoryMatrix</string>
 
-
     <!-- Color Match Game Color Names -->
     <string name="red">Red</string>
     <string name="green">Green</string>
@@ -38,6 +37,6 @@
     <string name="division">Division</string>
     <string name="lowerthen">LowerThen</string>
     <string name="higherthen">HigherThen</string>
-
+    <string name="title_activity_stat">StatActivity</string>
 
 </resources>

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Stat implements Parcelable {
     private int mHighScore = 0;
-    private List<GameStatInt> mScores = new ArrayList<GameStatInt>();
+    private List<GameStat> mScores = new ArrayList<GameStat>();
 
     public int getHighScore() {
         return mHighScore;
@@ -21,12 +21,16 @@ public class Stat implements Parcelable {
         this.mHighScore = mHighScore;
     }
 
-    public List<GameStatInt> getScores() {
+    public List<GameStat> getScores() {
         return mScores;
     }
 
-    public void setScores(List<GameStatInt> mScores) {
+    public void setScores(List<GameStat> mScores) {
         this.mScores = mScores;
+    }
+
+    public void addScore(GameStat score) {
+        mScores.add(score);
     }
 
     @Override

@@ -132,7 +132,7 @@ public abstract class AbstractGameActivity extends Activity implements Game {
     public void finishGame() {
         System.gc(); // clean up
         mGameStat.setScore(getScore());
-        boolean isHighScore = mGameStatManager.saveGame(this);
+        boolean isHighScore = mGameStatManager.saveGame(mGameStat);
         System.out.println("isHighScore:"+isHighScore);
         Intent i = new Intent(getApplicationContext(),GameResultActivity.class);
         i.putExtra(GameResultActivity.ARG_GAME_CLASS,this.getClass().toString());

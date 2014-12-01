@@ -92,7 +92,7 @@
             android:name="com.furkantektas.braingames.ui.games.GameResultActivity"
             android:label="@string/title_activity_game_result"
             android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.ui.MainActivity" />
@@ -101,7 +101,15 @@
             android:name="com.furkantektas.braingames.ui.games.GameMemoryMatrix"
             android:label="@string/title_activity_game_memory_matrix"
             android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.furkantektas.braingames.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.furkantektas.braingames.ui.games.StatActivity"
+            android:label="@string/title_activity_stat"
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.furkantektas.braingames.ui.MainActivity" />

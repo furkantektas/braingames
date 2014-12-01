@@ -15,6 +15,18 @@
         android:id="@+id/toggle_volume"
         android:contentDescription="Toggle Volume"
         android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_stat"
+        android:padding="7dp"
+        android:id="@+id/stats"
+        android:contentDescription="See Stats"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/toggle_volume"
+        android:layout_toLeftOf="@+id/toggle_volume"
+        android:layout_toStartOf="@+id/toggle_volume" />
     <LinearLayout
         android:layout_height="fill_parent"
         android:layout_width="match_parent"
