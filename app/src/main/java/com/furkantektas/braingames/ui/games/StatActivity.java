@@ -99,7 +99,7 @@ public class StatActivity extends Activity {
         // add data
         setData(statManager.readStats(GameType.COLOR_MATCH));
 
-        mChart.animateX(2500);
+        mChart.animateX(500);
         mChart.setBackgroundColor(Color.WHITE);
         mChart.setValueTextColor(mColor);
         mChart.setDrawLegend(false);

@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/orange_dark</item>
         <item name="colorAccent">@color/white</item>
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
         <item name="android:windowBackground">@color/orange_dark</item>
         <item name="android:navigationBarColor">@color/orange_dark</item>
     </style>
