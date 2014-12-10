@@ -14,7 +14,6 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,94 +25,64 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.MainActivity" />
+                android:value="com.furkantektas.braingames.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.furkantektas.braingames.ui.StatActivity"
+            android:label="@string/title_activity_stat"
+            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.furkantektas.braingames.ui.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameColorMatchActivity"
             android:configChanges="orientation"
             android:label="@string/game_color_match"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameCompareFastActivity"
             android:configChanges="orientation"
             android:label="@string/game_color_match"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameFindOperationActivity"
             android:configChanges="orientation"
             android:label="@string/game_find_operation"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameCalculateFastActivity"
             android:configChanges="orientation"
             android:label="@string/game_calculate_fast"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameShapeMatchActivity"
             android:configChanges="orientation"
             android:label="@string/game_shape_match"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.tuts.TutColorMatchActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_tut_color_match"
-            android:parentActivityName="com.furkantektas.braingames.ui.games.GameColorMatchActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.ui.games.GameColorMatchActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameResultActivity"
             android:label="@string/title_activity_game_result"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.ui.MainActivity" />
         </activity>
         <activity
             android:name="com.furkantektas.braingames.ui.games.GameMemoryMatrix"
             android:label="@string/title_activity_game_memory_matrix"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.ui.MainActivity" />
         </activity>
-        <activity
-            android:name=".ui.StatActivity"
-            android:label="@string/title_activity_stat"
-            android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.furkantektas.braingames.ui.MainActivity" />
-        </activity>
+
     </application>
 
 </manifest>

@@ -95,6 +95,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        ImageButton about = (ImageButton) findViewById(R.id.about_button);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), AboutActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
 

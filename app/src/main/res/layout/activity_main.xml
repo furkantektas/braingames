@@ -27,6 +27,21 @@
         android:layout_alignTop="@+id/toggle_volume"
         android:layout_toLeftOf="@+id/toggle_volume"
         android:layout_toStartOf="@+id/toggle_volume" />
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:id="@+id/about_button"
+        android:src="@drawable/ic_info"
+        android:background="@android:color/transparent"
+        android:contentDescription="About"
+        android:layout_alignTop="@+id/toggle_volume"
+        android:layout_toLeftOf="@+id/stats"
+        android:layout_toStartOf="@+id/stats" />
+
     <LinearLayout
         android:layout_height="fill_parent"
         android:layout_width="match_parent"

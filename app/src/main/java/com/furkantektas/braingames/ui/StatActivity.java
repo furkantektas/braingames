@@ -3,6 +3,7 @@ package com.furkantektas.braingames.ui;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,8 @@ public class StatActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         setContentView(R.layout.activity_stat);
         mColor = getResources().getColor(R.color.orange_dark);
         updateChart(GameType.MEMORY_MATRIX);
@@ -99,8 +102,9 @@ public class StatActivity extends ActionBarActivity {
             initStatChart();
         setData(mStatManager.readStats(type));
 
-        if(getSupportActionBar() != null)
+        if(getSupportActionBar() != null) {
             getSupportActionBar().setTitle(type.getStrResId());
+        }
         mChart.notifyDataSetChanged();
         mChart.animateX(500);
     }
@@ -172,6 +176,9 @@ public class StatActivity extends ActionBarActivity {
         switch (id){
             case R.id.action_game_list:
                 showGameListDialog();
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
                 return true;
             default:
                 return true;
