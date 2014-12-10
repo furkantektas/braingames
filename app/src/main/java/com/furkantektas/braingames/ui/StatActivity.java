@@ -1,13 +1,17 @@
-package com.furkantektas.braingames.ui.games;
+package com.furkantektas.braingames.ui;
 
-import android.app.Activity;
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.furkantektas.braingames.R;
-import com.furkantektas.braingames.datatypes.GameStatInt;
 import com.furkantektas.braingames.datatypes.GameType;
 import com.furkantektas.braingames.datatypes.Stat;
 import com.furkantektas.braingames.utils.GameStatManager;
@@ -17,22 +21,24 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.Legend;
-import com.github.mikephil.charting.utils.LimitLine;
 import com.github.mikephil.charting.utils.YLabels;
 
 import java.util.ArrayList;
 
-public class StatActivity extends Activity {
+public class StatActivity extends ActionBarActivity {
 
     private LineChart mChart;
     private int mColor;
+    private GameStatManager mStatManager;
+    private ArrayList<String> gameList = new ArrayList<String>();
+    private Dialog mGameListDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
         mColor = getResources().getColor(R.color.orange_dark);
-        initStatChart();
+        updateChart(GameType.MEMORY_MATRIX);
     }
 
     private void initStatChart() {
@@ -51,18 +57,9 @@ public class StatActivity extends Activity {
         });
 
         // no description text
-        mChart.setDescription("");
-        mChart.setNoDataTextDescription("You need to provide data for the chart.");
+        mChart.setNoDataText(getResources().getString(R.string.no_game_data_title));
+        mChart.setNoDataTextDescription(getResources().getString(R.string.no_game_data_title_desc));
 
-        // // enable / disable grid lines
-        // mChart.setDrawVerticalGrid(false);
-        // mChart.setDrawHorizontalGrid(false);
-        //
-        // // enable / disable grid background
-        // mChart.setDrawGridBackground(false);
-        //
-        // mChart.setDrawXLegend(false);
-        // mChart.setDrawYLegend(false);
 
         // enable value highlighting
         mChart.setHighlightEnabled(true);
@@ -74,41 +71,18 @@ public class StatActivity extends Activity {
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
 
-        // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
 
-        // set an alternative background color
-        // mChart.setBackgroundColor(Color.GRAY);
-
-//        // create a custom MarkerView (extend MarkerView) and specify the layout
-//        // to use for it
-//        MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
-//
-//        // define an offset to change the original position of the marker
-//        // (optional)
-//        mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
-//
-//        // set the marker to the chart
-//        mChart.setMarkerView(mv);
-
-        // enable/disable highlight indicators (the lines that indicate the
-        // highlighted Entry)
         mChart.setHighlightIndicatorEnabled(false);
 
-        GameStatManager statManager = new GameStatManager(getBaseContext());
-        // add data
-        setData(statManager.readStats(GameType.COLOR_MATCH));
+        mStatManager = new GameStatManager(getBaseContext());
 
         mChart.animateX(500);
         mChart.setBackgroundColor(Color.WHITE);
         mChart.setValueTextColor(mColor);
         mChart.setDrawLegend(false);
 
-        // enable / disable grid lines
         mChart.setDrawVerticalGrid(false);
-        // mChart.setDrawHorizontalGrid(false);
-        //
-        // enable / disable grid background
         mChart.setDrawGridBackground(false);
         mChart.setGridColor(Color.BLACK & 0x2FFFFFFF);
         mChart.setGridWidth(5f);
@@ -118,25 +92,25 @@ public class StatActivity extends Activity {
         YLabels y = mChart.getYLabels();
         y.setTextColor(mColor);
         y.setLabelCount(4);
-//        // restrain the maximum scale-out factor
-//        mChart.setScaleMinima(3f, 3f);
-//
-//        // center the view to a specific position inside the chart
-//        mChart.centerViewPort(10, 50);
+    }
 
-        // get the legend (only possible after setting data)
-        Legend l = mChart.getLegend();
-        l.setTextColor(mColor);
+    private void updateChart(GameType type) {
+        if(mChart == null)
+            initStatChart();
+        setData(mStatManager.readStats(type));
 
-        // modify the legend ...
-        // l.setPosition(LegendPosition.LEFT_OF_CHART);
-        l.setForm(Legend.LegendForm.LINE);
-
-        // // dont forget to refresh the drawing
-        // mChart.invalidate();
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setTitle(type.getStrResId());
+        mChart.notifyDataSetChanged();
+        mChart.animateX(500);
     }
 
     private void setData(Stat t) {
+        if(t == null) {
+            mChart.clear();
+            return;
+        }
+
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < t.getScores().size(); i++) {
             xVals.add((i) + "");
@@ -172,5 +146,65 @@ public class StatActivity extends Activity {
 
         // set data
         mChart.setData(data);
+        Legend l = mChart.getLegend();
+        l.setTextColor(mColor);
+
+        // modify the legend ...
+        // l.setPosition(LegendPosition.LEFT_OF_CHART);
+        l.setForm(Legend.LegendForm.LINE);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_stat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.action_game_list:
+                showGameListDialog();
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    private void showGameListDialog() {
+        if(mGameListDialog == null) {
+            if (gameList.size() < 1)
+                for (GameType game : GameType.values())
+                    gameList.add(getResources().getString(game.getStrResId()));
+
+            ListView listView = new ListView(this);
+
+
+            mGameListDialog = new Dialog(this);
+//        dialog.setContentView(R.layout.list_layout);
+            mGameListDialog.setTitle(R.string.pick_game_title);
+//        ListView listView = (ListView) dialog.findViewById(R.id.list);
+            ArrayAdapter<String> ad = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, gameList);
+            listView.setAdapter(ad);
+            mGameListDialog.setContentView(listView);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
+                    mGameListDialog.dismiss();
+                    updateChart(GameType.values()[pos]);
+                }
+            });
+
+
+        }
+        mGameListDialog.show();
     }
 }

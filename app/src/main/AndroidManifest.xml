@@ -107,7 +107,7 @@
                 android:value="com.furkantektas.braingames.ui.MainActivity" />
         </activity>
         <activity
-            android:name="com.furkantektas.braingames.ui.games.StatActivity"
+            android:name=".ui.StatActivity"
             android:label="@string/title_activity_stat"
             android:parentActivityName="com.furkantektas.braingames.ui.MainActivity" >
             <meta-data

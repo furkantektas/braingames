@@ -17,7 +17,6 @@ import com.furkantektas.braingames.ui.games.GameCompareFastActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameMemoryMatrix;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
-import com.furkantektas.braingames.ui.games.StatActivity;
 
 
 public class MainActivity extends Activity {
