@@ -45,88 +45,51 @@
     <LinearLayout
         android:layout_height="fill_parent"
         android:layout_width="match_parent"
-        android:weightSum="4"
+        android:weightSum="5"
         android:orientation="vertical"
         android:layout_below="@id/toggle_volume">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="3"
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sm_cloud"
-            />
+            android:src="@drawable/mainscreen_logo"
+            android:scaleType="centerInside" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:textSize="28sp" />
         </LinearLayout>
-        <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-        android:columnCount="2"
-        android:gravity="center"
-        android:useDefaultMargins="true">
 
-        <Button
-            android:text="Color Match"
-            android:id="@+id/button_color_match"
-            android:background="@color/orange"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_gravity="fill_horizontal" />
-        <Button
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Shape Match"
-            android:id="@+id/button_shape_match"
-            android:background="@color/orange"
-            android:layout_width="wrap_content"
-            android:layout_gravity="fill_horizontal"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:gravity="center">
 
-        <Button
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Find Operation"
-            android:id="@+id/button_find_operation"
-            android:background="@color/orange"
-            android:layout_gravity="fill_horizontal"/>
-
-        <Button
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Memory Matrix"
-            android:id="@+id/button_memory_matrix"
-            android:background="@color/orange"
-            android:layout_gravity="fill_horizontal"/>
-
-        <Button
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Calculate Fast"
-            android:id="@+id/button_calculate_fast"
-            android:background="@color/orange"
-            android:layout_gravity="fill_horizontal"/>
-
-        <Button
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:text="Compare Fast"
-            android:id="@+id/button_compare_fast"
-            android:background="@color/orange"
-            android:layout_gravity="fill_horizontal"/>
-
-
-    </GridLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Game"
+                android:id="@+id/new_game"
+                android:background="@drawable/borderedbg"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:padding="15dp"
+                android:textSize="18sp"
+                style="?android:attr/borderlessButtonStyle"
+                android:elevation="0dp" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

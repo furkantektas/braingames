@@ -46,8 +46,6 @@ public class StatActivity extends ActionBarActivity {
 
     private void initStatChart() {
         mChart = (LineChart) findViewById(R.id.chart1);
-//        mChart.setOnChartGestureListener(this);
-//        mChart.setOnChartValueSelectedListener(this);
 
         mChart.setStartAtZero(true);
 

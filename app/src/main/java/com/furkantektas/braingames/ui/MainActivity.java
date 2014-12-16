@@ -11,12 +11,17 @@ import android.widget.ImageButton;
 
 import com.furkantektas.braingames.R;
 import com.furkantektas.braingames.data.SFX;
+import com.furkantektas.braingames.datatypes.ColorMatch;
+import com.furkantektas.braingames.datatypes.GameType;
+import com.furkantektas.braingames.ui.games.AbstractGameActivity;
 import com.furkantektas.braingames.ui.games.GameCalculateFastActivity;
 import com.furkantektas.braingames.ui.games.GameColorMatchActivity;
 import com.furkantektas.braingames.ui.games.GameCompareFastActivity;
 import com.furkantektas.braingames.ui.games.GameFindOperationActivity;
 import com.furkantektas.braingames.ui.games.GameMemoryMatrix;
 import com.furkantektas.braingames.ui.games.GameShapeMatchActivity;
+
+import java.util.Random;
 
 
 public class MainActivity extends Activity {
@@ -30,58 +35,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         init();
-
-        Button color_match = (Button) findViewById(R.id.button_color_match);
-        color_match.setOnClickListener(new View.OnClickListener() {
+        Button newGame = (Button) findViewById(R.id.new_game);
+        newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),GameColorMatchActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-        Button shape_match = (Button) findViewById(R.id.button_shape_match);
-        shape_match.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),GameShapeMatchActivity.class);
-                startActivity(i);
-            }
-        });
-
-        Button find_operation = (Button) findViewById(R.id.button_find_operation);
-        find_operation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent find_operation_intent = new Intent(getApplicationContext(),GameFindOperationActivity.class);
-                startActivity(find_operation_intent);
-            }
-        });
-
-        Button calculate_fast = (Button) findViewById(R.id.button_calculate_fast);
-        calculate_fast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent calculate_fast_intent = new Intent(getApplicationContext(),GameCalculateFastActivity.class);
-                startActivity(calculate_fast_intent);
-            }
-        });
-
-        Button memory_matrix = (Button) findViewById(R.id.button_memory_matrix);
-        memory_matrix.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),GameMemoryMatrix.class);
-                startActivity(i);
-            }
-        });
-
-        Button compare_fast = (Button) findViewById(R.id.button_compare_fast);
-        compare_fast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),GameCompareFastActivity.class);
+                Intent i = new Intent(getApplicationContext(), AbstractGameActivity.getRandomGameIntent());
                 startActivity(i);
             }
         });

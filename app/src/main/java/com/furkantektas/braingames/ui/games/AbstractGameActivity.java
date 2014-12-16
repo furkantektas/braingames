@@ -20,6 +20,7 @@ import com.furkantektas.braingames.ui.ReadyScreenFragment;
 import com.furkantektas.braingames.utils.GameStatManager;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  * AbstractGameActivity is the predecessor class of all game activity
@@ -157,6 +158,28 @@ public abstract class AbstractGameActivity extends Activity implements Game {
                         startActivity(new Intent(getApplicationContext(), cl));
                 }
             }
+        }
+    }
+
+    public static Class getRandomGameIntent() {
+        Random random = new Random();
+        GameType[] gameTypes = GameType.values();
+        GameType type = gameTypes[random.nextInt(gameTypes.length)];
+        switch (type) {
+            case SHAPE_MATCH:
+                return GameShapeMatchActivity.class;
+            case COLOR_MATCH:
+                return GameColorMatchActivity.class;
+            case FIND_OPERATION:
+                return GameFindOperationActivity.class;
+            case MEMORY_MATRIX:
+                return GameMemoryMatrix.class;
+            case CALCULATE_FAST:
+                return GameCalculateFastActivity.class;
+            case COMPARE_FAST:
+                return GameCompareFastActivity.class;
+            default:
+                return GameMemoryMatrix.class;
         }
     }
 
