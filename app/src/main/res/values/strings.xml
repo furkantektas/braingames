@@ -7,7 +7,7 @@
     <string name="action_pick_game">Pick Game</string>
     <string name="action_about">About</string>
     <string name="title_activity_about">About</string>
-    <string name="about_text">Our games are highly influenced by <a href="http://translimit.co.jp/">BrainWars</a>\' and especially <a href="http://www.lumosity.com/">lumosity</a>\'s games. We want to thank them both for influencing us. Application icon "Brain" designed by <a href="http://www.thenounproject.com/christophablake">Christopher Reyes</a> from the <a href="http://www.thenounproject.com">Noun Project</a>. Sound effects are from <a href="http://www.freesound.org/people/GameAudio/">GameAudio</a> and <a href="http://www.freesound.org/people/junggle/">Junggle</a>.<br />BrainGames is an open source project. You can contribute to BrainWars on <a href="https://github.com/furkantektas/braingames">GitHub!</a></string>
+    <string name="about_text">Our games are highly influenced by <a href="http://translimit.co.jp/">BrainWars</a>\' and especially <a href="http://www.lumosity.com/">lumosity</a>\'s games. We want to thank them both for influencing us. Application icon "Brain" designed by <a href="http://www.thenounproject.com/jessie_vp">jessie_vp</a> from the <a href="http://www.thenounproject.com">Noun Project</a>. Sound effects are from <a href="http://www.freesound.org/people/GameAudio/">GameAudio</a> and <a href="http://www.freesound.org/people/junggle/">Junggle</a>.<br />BrainGames is an open source project. You can contribute to BrainWars on <a href="https://github.com/furkantektas/braingames">GitHub!</a></string>
     <string name="title_activity_tut_color_match">Color Match Tutorial</string>
     <string name="start_game">Start</string>
     <string name="replay_button">Replay</string>
