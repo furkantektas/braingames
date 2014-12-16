@@ -70,6 +70,9 @@ public class StatActivity extends ActionBarActivity {
         // enable touch gestures
         mChart.setTouchEnabled(true);
 
+        mChart.setDescription("");
+
+
         // enable scaling and dragging
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
