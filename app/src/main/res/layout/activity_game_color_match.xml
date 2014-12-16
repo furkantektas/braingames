@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/countdown"
         android:textSize="20sp"
-        app:time="60000"
+        app:time="30000"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
