@@ -76,6 +76,7 @@ public class CalculateFastAdapter   extends BaseAdapter {
             int rand1 = r.nextInt(MathOperation.Operation.values().length);
             c = new MathOperation(MathOperation.generateOperation(rand1));
             mDataSet.add(c);
+
         }
     }
 

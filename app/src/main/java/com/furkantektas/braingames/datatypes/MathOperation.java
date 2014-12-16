@@ -182,6 +182,7 @@ public class MathOperation {
         results.clear();
         switch (mOperation){
             case ADDITION:
+            case DIVISION:
             case EXTRACTION:{
                 for(int i=0;i<4;++i){
                     results.add(result-(randomStart-i));
@@ -190,11 +191,6 @@ public class MathOperation {
             case MULTIPLICATION:{
                 for(int i=0;i<4;++i){
                     results.add(firstNumber*(secondNumber-(randomStart-i)));
-                }
-            }break;
-            case DIVISION:{
-                for(int i=0;i<4;++i){
-                    results.add(firstNumber/(secondNumber-(randomStart-i)));
                 }
             }break;
         }
