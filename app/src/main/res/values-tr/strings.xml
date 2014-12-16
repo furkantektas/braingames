@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BrainGames</string>
     <string name="action_about">Hakkında</string>
     <string name="action_settings">Ayarlar</string>
     <string name="black">Siyah</string>
@@ -25,4 +24,21 @@
     <string name="game_find_operation">İşlemi Bul</string>
     <string name="game_memory_matrix">Hafıza Matrisi</string>
     <string name="game_calculate_fast">Hızlı Hesapla</string>
+    <string name="action_pick_game">Oyun Seç</string>
+    <string name="addition">Toplama</string>
+    <string name="division">Bölme</string>
+    <string name="extraction">Çıkarma</string>
+    <string name="game_compare_fast">Hızlı Karşılaştırma</string>
+    <string name="higherthen">Büyüktür</string>
+    <string name="lowerthen">Küçüktür</string>
+    <string name="multiplication">Çarpma</string>
+    <string name="no_game_data_actionbar">Oyun Verisi Yok</string>
+    <string name="no_game_data_title">Oynamaya Devam Et!</string>
+    <string name="no_game_data_title_desc">Hiç oyun oynanmamış</string>
+    <string name="pick_game_title">Oyun Seç</string>
+    <string name="title_activity_game_memory_matrix">Hafıza Matrisi</string>
+    <string name="title_activity_game_result">Oyun Bitti</string>
+    <string name="title_activity_stat">İstatistikler</string>
+    <string name="title_activity_tut_color_match">Renk Eşleştirme Demosu</string>
+    <string name="about_text">Oyunlarımız büyük ölçüde <a href="http://translimit.co.jp/">BrainWars</a>\' ve özellikle <a href="http://www.lumosity.com/">lumosity</a> oyunlarından etkilenmiştir. Bu güzel ve keyifli oyunları geliştirdikleri için iki oyuna da teşekkürü borç biliriz. Uygulama simgesi olan "beyin" <a href="http://www.thenounproject.com">Noun Project</a>\'teki <a href="http://www.thenounproject.com/jessie_vp">jessie_vp</a> tarafından tasarlanmıştır. Ses efektleri <a href="http://www.freesound.org/people/GameAudio/">GameAudio</a> ve <a href="http://www.freesound.org/people/junggle/">Junggle</a> arşivlerinden alınmıştır.<br />BrainGames ücretsiz ve açık kaynak kodlu bir projedir. Bize <a href="https://github.com/furkantektas/braingames">GitHub</a> üzerinden katkıda bulunabilirsiniz.</string>
 </resources>

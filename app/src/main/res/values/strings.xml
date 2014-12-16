@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name" translatable="false">BrainGames</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_pick_game">Pick Game</string>
     <string name="action_about">About</string>
@@ -31,7 +30,6 @@
     <string name="white">White</string>
     <string name="same">Same</string>
     <string name="different">Different</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_game_result">GameResultActivity</string>
     <string name="high_score">High Score</string>
 
