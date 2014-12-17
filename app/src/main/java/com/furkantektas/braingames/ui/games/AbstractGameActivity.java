@@ -131,7 +131,6 @@ public abstract class AbstractGameActivity extends Activity implements Game {
 
     @Override
     public void finishGame() {
-        System.gc(); // clean up
         mGameStat.setScore(getScore());
         boolean isHighScore = mGameStatManager.saveGame(mGameStat);
         System.out.println("isHighScore:"+isHighScore);
