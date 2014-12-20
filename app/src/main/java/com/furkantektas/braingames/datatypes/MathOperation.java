@@ -87,7 +87,7 @@ public class MathOperation {
             case ADDITION:returnValue.append("+");break;
             case EXTRACTION:returnValue.append("-");break;
             case MULTIPLICATION:returnValue.append("*");break;
-            case DIVISION:returnValue.append("/");break;
+            case DIVISION:returnValue.append("÷");break;
         }
         returnValue.append(secondNumber);
         return returnValue;
@@ -99,7 +99,7 @@ public class MathOperation {
             case ADDITION:returnValue.append("+");break;
             case EXTRACTION:returnValue.append("-");break;
             case MULTIPLICATION:returnValue.append("*");break;
-            case DIVISION:returnValue.append("/");break;
+            case DIVISION:returnValue.append("÷");break;
         }
         returnValue.append(secondNumber).append("=").append(result);
         return returnValue;
@@ -111,7 +111,7 @@ public class MathOperation {
             case ADDITION:returnValue.append("+");break;
             case EXTRACTION:returnValue.append("-");break;
             case MULTIPLICATION:returnValue.append("*");break;
-            case DIVISION:returnValue.append("/");break;
+            case DIVISION:returnValue.append("÷");break;
         }
         returnValue.append(secondNumber).append("=").append(fakeResult);
         return returnValue;
