@@ -41,4 +41,8 @@
     <string name="title_activity_stat">İstatistikler</string>
     <string name="title_activity_tut_color_match">Renk Eşleştirme Demosu</string>
     <string name="about_text">Oyunlarımız büyük ölçüde <a href="http://translimit.co.jp/">BrainWars</a>\' ve özellikle <a href="http://www.lumosity.com/">lumosity</a> oyunlarından etkilenmiştir. Bu güzel ve keyifli oyunları geliştirdikleri için iki oyuna da teşekkürü borç biliriz. Uygulama simgesi olan "beyin" <a href="http://www.thenounproject.com">Noun Project</a>\'teki <a href="http://www.thenounproject.com/jessie_vp">jessie_vp</a> tarafından tasarlanmıştır. Ses efektleri <a href="http://www.freesound.org/people/GameAudio/">GameAudio</a> ve <a href="http://www.freesound.org/people/junggle/">Junggle</a> arşivlerinden alınmıştır.<br />BrainGames ücretsiz ve açık kaynak kodlu bir projedir. Bize <a href="https://github.com/furkantektas/braingames">GitHub</a> üzerinden katkıda bulunabilirsiniz.</string>
+    <string name="new_game_button">Yeni Oyun</string>
+    <string name="button_true">Doğru</string>
+    <string name="button_false">Yanlış</string>
+
 </resources>

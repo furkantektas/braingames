@@ -13,6 +13,9 @@
     <string name="main_menu_button">Main Menu</string>
     <string name="title_activity_game_memory_matrix">GameMemoryMatrix</string>
     <string name="pick_game_title">Pick a game!</string>
+    <string name="new_game_button">New Game</string>
+    <string name="button_true">True</string>
+    <string name="button_false">False</string>
 
     <string name="no_game_data_title">Keep playing!</string>
     <string name="no_game_data_title_desc">No games played yet.</string>
